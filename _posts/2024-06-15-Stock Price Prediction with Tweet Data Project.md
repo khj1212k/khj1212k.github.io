@@ -2,6 +2,7 @@
 layout: single
 title: "Stock Price Prediction with Tweet Data Project"
 categories: Projects
+tag: python data ML DL
 ---
 # 0. import
 
@@ -257,123 +258,6 @@ text-align: right;
 
 
   
-```python
-plt.figure(figsize=(14, 7))
-sns.lineplot(data=stock_data, x='date', y='close', hue='ticker_symbol')
-plt.title('Stock Prices Over Time')
-plt.xlabel('Date')
-plt.ylabel('Close Price')
-plt.legend(title='Ticker Symbol')
-plt.show()
-```
-
-![png](tweet_stock_files/tweet_stock_13_0.png)
-
-```python
-# Convert post_date in Tweet to match the date format in stock_data
-Tweet['date'] = Tweet['post_date'].dt.date
-Tweet['date'] = pd.to_datetime(Tweet['date'])
-
-# Merge Tweet with Company to get ticker symbols
-Tweet = Tweet.merge(Company_Tweet, how='left', on = 'tweet_id')
-Tweet.head()
-```
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-.dataframe tbody tr th {
-vertical-align: top;
-}
-
-.dataframe thead th {
-text-align: right;
-}
-</style>
-
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>tweet_id</th>
-      <th>writer</th>
-      <th>post_date</th>
-      <th>body</th>
-      <th>comment_num</th>
-      <th>retweet_num</th>
-      <th>like_num</th>
-      <th>date</th>
-      <th>ticker_symbol</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>550441509175443456</td>
-      <td>VisualStockRSRC</td>
-      <td>2015-01-01 00:00:57</td>
-      <td>lx21 made $10,008  on $AAPL -Check it out! htt...</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>2015-01-01</td>
-      <td>AAPL</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>550441672312512512</td>
-      <td>KeralaGuy77</td>
-      <td>2015-01-01 00:01:36</td>
-      <td>Insanity of today weirdo massive selling. $aap...</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>2015-01-01</td>
-      <td>AAPL</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>550441732014223360</td>
-      <td>DozenStocks</td>
-      <td>2015-01-01 00:01:50</td>
-      <td>S&P100 #Stocks Performance $HD $LOW $SBUX $TGT...</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>2015-01-01</td>
-      <td>AMZN</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>550442977802207232</td>
-      <td>ShowDreamCar</td>
-      <td>2015-01-01 00:06:47</td>
-      <td>$GM $TSLA: Volkswagen Pushes 2014 Record Recal...</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>2015-01-01</td>
-      <td>TSLA</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>550443807834402816</td>
-      <td>i_Know_First</td>
-      <td>2015-01-01 00:10:05</td>
-      <td>Swing Trading: Up To 8.91% Return In 14 Days h...</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>2015-01-01</td>
-      <td>AAPL</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
 ```python
 stock_data.describe()
 ```
@@ -3450,279 +3334,6 @@ text-align: right;
 
   
 ```python
-# Merge sentiment aggregates into stock data
-stock_data_senti = pd.merge(stock_data, sentiment_df, on=['date', 'ticker_symbol'],how='inner')
-# stock_data_senti = stock_data_senti[['date','open','adj close','ma_7','ma_30','volatility_7','volume','ticker_symbol','textblob_polarity','vader_polarity','tweetnlp_polarity']]
-# stock_data_senti.columns = ['date','Open','High','Low','Close','Adj Close','Volume','Ticker','P_mean','P_sum','twt_count']
-stock_data_senti['date'] = pd.to_datetime(stock_data_senti['date'])
-stock_data_senti
-```
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-.dataframe tbody tr th {
-vertical-align: top;
-}
-
-.dataframe thead th {
-text-align: right;
-}
-</style>
-
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>date</th>
-      <th>open</th>
-      <th>high</th>
-      <th>low</th>
-      <th>close</th>
-      <th>adj close</th>
-      <th>volume</th>
-      <th>ticker_symbol</th>
-      <th>ma_7</th>
-      <th>ma_30</th>
-      <th>volatility_7</th>
-      <th>total_engagement</th>
-      <th>tweet_volume</th>
-      <th>target</th>
-      <th>textblob_polarity</th>
-      <th>vader_polarity</th>
-      <th>tweetnlp_polarity</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>2019-12-31</td>
-      <td>289.930</td>
-      <td>293.680</td>
-      <td>289.520</td>
-      <td>293.650</td>
-      <td>292.955</td>
-      <td>25201400</td>
-      <td>AAPL</td>
-      <td>300.349</td>
-      <td>313.548</td>
-      <td>5.029</td>
-      <td>2288.000</td>
-      <td>466489.000</td>
-      <td>0</td>
-      <td>0.354</td>
-      <td>0.754</td>
-      <td>0.583</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2019-12-30</td>
-      <td>289.460</td>
-      <td>292.690</td>
-      <td>285.220</td>
-      <td>291.520</td>
-      <td>290.830</td>
-      <td>36028600</td>
-      <td>AAPL</td>
-      <td>297.761</td>
-      <td>312.359</td>
-      <td>4.014</td>
-      <td>3256.000</td>
-      <td>535824.000</td>
-      <td>0</td>
-      <td>1.402</td>
-      <td>1.694</td>
-      <td>1.230</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>2019-12-27</td>
-      <td>291.120</td>
-      <td>293.970</td>
-      <td>288.120</td>
-      <td>289.800</td>
-      <td>289.114</td>
-      <td>36566500</td>
-      <td>AAPL</td>
-      <td>295.849</td>
-      <td>311.365</td>
-      <td>4.183</td>
-      <td>1194.000</td>
-      <td>145161.000</td>
-      <td>1</td>
-      <td>0.316</td>
-      <td>0.604</td>
-      <td>0.008</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>2019-12-26</td>
-      <td>284.820</td>
-      <td>289.980</td>
-      <td>284.700</td>
-      <td>289.910</td>
-      <td>289.224</td>
-      <td>23280300</td>
-      <td>AAPL</td>
-      <td>294.637</td>
-      <td>310.311</td>
-      <td>4.537</td>
-      <td>2613.000</td>
-      <td>477481.000</td>
-      <td>0</td>
-      <td>0.417</td>
-      <td>0.581</td>
-      <td>-0.023</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>2019-12-24</td>
-      <td>284.690</td>
-      <td>284.890</td>
-      <td>282.920</td>
-      <td>284.270</td>
-      <td>283.597</td>
-      <td>12119700</td>
-      <td>AAPL</td>
-      <td>292.419</td>
-      <td>309.119</td>
-      <td>5.321</td>
-      <td>1348.000</td>
-      <td>123904.000</td>
-      <td>0</td>
-      <td>0.812</td>
-      <td>0.847</td>
-      <td>-0.043</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>7539</th>
-      <td>2015-01-08</td>
-      <td>212.810</td>
-      <td>213.800</td>
-      <td>210.010</td>
-      <td>210.620</td>
-      <td>210.620</td>
-      <td>3442500</td>
-      <td>TSLA</td>
-      <td>200.196</td>
-      <td>206.351</td>
-      <td>7.609</td>
-      <td>281.000</td>
-      <td>56644.000</td>
-      <td>1</td>
-      <td>0.132</td>
-      <td>0.320</td>
-      <td>-0.084</td>
-    </tr>
-    <tr>
-      <th>7540</th>
-      <td>2015-01-07</td>
-      <td>213.350</td>
-      <td>214.780</td>
-      <td>209.780</td>
-      <td>210.950</td>
-      <td>210.950</td>
-      <td>2968400</td>
-      <td>TSLA</td>
-      <td>202.750</td>
-      <td>206.146</td>
-      <td>7.816</td>
-      <td>283.000</td>
-      <td>63504.000</td>
-      <td>1</td>
-      <td>0.167</td>
-      <td>0.220</td>
-      <td>-0.048</td>
-    </tr>
-    <tr>
-      <th>7541</th>
-      <td>2015-01-06</td>
-      <td>210.060</td>
-      <td>214.200</td>
-      <td>204.210</td>
-      <td>211.280</td>
-      <td>211.280</td>
-      <td>6261900</td>
-      <td>TSLA</td>
-      <td>205.523</td>
-      <td>206.131</td>
-      <td>6.673</td>
-      <td>216.000</td>
-      <td>57600.000</td>
-      <td>0</td>
-      <td>0.140</td>
-      <td>0.177</td>
-      <td>0.008</td>
-    </tr>
-    <tr>
-      <th>7542</th>
-      <td>2015-01-05</td>
-      <td>214.550</td>
-      <td>216.500</td>
-      <td>207.160</td>
-      <td>210.090</td>
-      <td>210.090</td>
-      <td>5368500</td>
-      <td>TSLA</td>
-      <td>208.009</td>
-      <td>206.319</td>
-      <td>3.653</td>
-      <td>309.000</td>
-      <td>77284.000</td>
-      <td>1</td>
-      <td>0.205</td>
-      <td>0.271</td>
-      <td>-0.007</td>
-    </tr>
-    <tr>
-      <th>7543</th>
-      <td>2015-01-02</td>
-      <td>222.870</td>
-      <td>223.250</td>
-      <td>213.260</td>
-      <td>219.310</td>
-      <td>219.310</td>
-      <td>4764400</td>
-      <td>TSLA</td>
-      <td>210.160</td>
-      <td>206.818</td>
-      <td>5.184</td>
-      <td>218.000</td>
-      <td>40401.000</td>
-      <td>0</td>
-      <td>0.198</td>
-      <td>0.242</td>
-      <td>0.119</td>
-    </tr>
-  </tbody>
-</table>
-<p>7544 rows × 17 columns</p>
-</div>
-
-```python
 stock_data_senti.isna().sum().sum()
 ```
 
@@ -5612,7 +5223,8 @@ array([[0.09772617, 0.08937765, 0.07231139, ..., 0.56774131, 0.10635441,
 0.98952336],
 [0.99856644, 1.        , 1.        , ..., 0.68220194, 0.99408312,
 
-1.    ]])
+1. ]])
+
 ## Feature & Label Selection
 
 ```python
@@ -5644,6 +5256,7 @@ def trainX_Y(df_for_training_scaled, n_future = 1):
 trainX, trainY = trainX_Y(df_for_training_scaled)
 
 ```
+
 TrainX shape = (1247, 7, 14).
 TrainY shape = (1247, 1, 2).
 
@@ -5654,6 +5267,7 @@ without_polarity = [i for i in range(trainX.shape[-1]) if i+1 not in polarity_il
 print(trainX.shape, df_for_training_AAPL.drop('Ticker',axis=1).shape)
 df_for_training_AAPL.drop('Ticker',axis=1).columns[without_polarity]
 ```
+
 (1247, 7, 14) (1255, 14)
 
 Index(['high', 'low', 'adj close', 'Volume', 'ma_7', 'ma_30', 'volatility_7',
@@ -5687,6 +5301,7 @@ for T in X, X_t, Y, Y_t:
         print(v,':',t.shape)
     print()
 ```
+
 train : (897, 7, 11)
 val : (100, 7, 11)
 test : (250, 7, 11)
@@ -5739,6 +5354,7 @@ def build_model(input_shape):
     cnn_lstm_model.summary()
     return cnn_lstm_model
 ```
+
 ```python
 from tensorflow.keras.callbacks import EarlyStopping
 
@@ -5774,6 +5390,7 @@ def fit_models(X, X_t, Y, Y_t):
 
 cnn_model, cnn_model_twit, history, history_twit = fit_models(X, X_t, Y, Y_t)
 ```
+
 Model: "sequential_103"
 
 ---
@@ -6089,6 +5706,7 @@ def loss_plot(history, history_twit):
 # 예제 사용
 loss_plot(history, history_twit)
 ```
+
 ![png](tweet_stock_files/tweet_stock_109_0.png)
 
 ### 2. Plotting Prediction Results
@@ -6126,6 +5744,7 @@ def plot_predictions_with_dates(type, twitter, dates, y_actual_lstm, y_pred_lstm
     print(f'Root Mean Squared Error (RMSE) for {predicted_features[1]} = {errors[1]}')
     print('Total Root Mean Squared Error (RMSE)', np.sqrt(mean_squared_error(y_actual_lstm, y_pred_lstm)))
 ```
+
 #### Train Data
 
 ##### Computing  accuracy
@@ -6154,6 +5773,7 @@ def computing_accuracy(X_, X_twit_,y_):
 
 y_pred, y_pred_twit, y_actual = computing_accuracy(X_train, X_train_twit,y_train)
 ```
+
 29/29 [==============================] - 2s 10ms/step
 29/29 [==============================] - 2s 10ms/step
 
@@ -6162,6 +5782,7 @@ y_pred, y_pred_twit, y_actual = computing_accuracy(X_train, X_train_twit,y_train
 ```python
 plot_predictions_with_dates('Training',False,train_dates,y_actual,y_pred)
 ```
+
 ![png](tweet_stock_files/tweet_stock_116_0.png)
 
 Root Mean Squared Error (RMSE) for Open = 4.783395799659464
@@ -6173,6 +5794,7 @@ Total Root Mean Squared Error (RMSE) 4.565522073918886
 ```python
 plot_predictions_with_dates('Training',True,train_dates,y_actual,y_pred_twit)
 ```
+
 ![png](tweet_stock_files/tweet_stock_118_0.png)
 
 Root Mean Squared Error (RMSE) for Open = 3.058509961819492
@@ -6189,6 +5811,7 @@ Total Root Mean Squared Error (RMSE) 3.1624083520712287
 y_pred, y_pred_twit, y_actual = computing_accuracy(X_val, X_val_twit, y_val)
 plot_predictions_with_dates('Validation',False,val_dates,y_actual,y_pred)
 ```
+
 4/4 [==============================] - 0s 11ms/step
 4/4 [==============================] - 0s 11ms/step
 ![png](tweet_stock_files/tweet_stock_122_1.png)
@@ -6202,6 +5825,7 @@ Total Root Mean Squared Error (RMSE) 8.788044807486214
 ```python
 plot_predictions_with_dates('Validation',True,val_dates,y_actual,y_pred_twit)
 ```
+
 ![png](tweet_stock_files/tweet_stock_124_0.png)
 
 Root Mean Squared Error (RMSE) for Open = 6.097256299537074
@@ -6218,6 +5842,7 @@ Total Root Mean Squared Error (RMSE) 6.345091316042568
 y_pred, y_pred_twit, y_actual = computing_accuracy(X_test, X_test_twit,y_test)
 plot_predictions_with_dates('Testing',False,test_dates,y_actual,y_pred)
 ```
+
 8/8 [==============================] - 0s 11ms/step
 8/8 [==============================] - 0s 12ms/step
 ![png](tweet_stock_files/tweet_stock_128_1.png)
@@ -6231,6 +5856,7 @@ Total Root Mean Squared Error (RMSE) 16.689081145169638
 ```python
 plot_predictions_with_dates('Testing',True,test_dates,y_actual,y_pred_twit)
 ```
+
 ![png](tweet_stock_files/tweet_stock_130_0.png)
 
 Root Mean Squared Error (RMSE) for Open = 12.288276138461866
@@ -6271,6 +5897,7 @@ def tweet_stock_pipline(df_for_training, ticker='AAPL', n_future = 1):
   
 tweet_stock_pipline(df_for_training, 'AAPL', n_future=7)
 ```
+
 TrainX shape = (1241, 7, 14).
 TrainY shape = (1241, 1, 2).
 Model: "sequential_88"
@@ -6657,6 +6284,7 @@ Total Root Mean Squared Error (RMSE) 14.066335010201561
 ```python
 tweet_stock_pipline(df_for_training, 'MSFT')
 ```
+
 TrainX shape = (1250, 7, 14).
 TrainY shape = (1250, 1, 2).
 Model: "sequential_90"
@@ -6931,6 +6559,7 @@ Total Root Mean Squared Error (RMSE) 17.10044642026967
 ```python
 tweet_stock_pipline(df_for_training, 'GOOG')
 ```
+
 TrainX shape = (1249, 7, 14).
 TrainY shape = (1249, 1, 2).
 Model: "sequential_92"
@@ -7201,6 +6830,7 @@ Total Root Mean Squared Error (RMSE) 20.444250666311223
 ```python
 tweet_stock_pipline(df_for_training, 'GOOGL')
 ```
+
 TrainX shape = (1250, 7, 14).
 TrainY shape = (1250, 1, 2).
 Model: "sequential_94"
@@ -7517,6 +7147,7 @@ Total Root Mean Squared Error (RMSE) 20.009927058972703
 ```python
 tweet_stock_pipline(df_for_training, 'AMZN')
 ```
+
 TrainX shape = (1250, 7, 14).
 TrainY shape = (1250, 1, 2).
 Model: "sequential_96"
@@ -7783,6 +7414,7 @@ Total Root Mean Squared Error (RMSE) 21.71682341571078
 ```python
 tweet_stock_pipline(df_for_training, 'TSLA')
 ```
+
 TrainX shape = (1250, 7, 14).
 TrainY shape = (1250, 1, 2).
 Model: "sequential_98"
@@ -8099,12 +7731,15 @@ Total Root Mean Squared Error (RMSE) 11.692155204781924
 ```python
 
 ```
+
 ```python
 
 ```
+
 ```python
 
 ```
+
 # 10. Binary Classification Task
 
 ## Creating Binary Labels
@@ -8112,6 +7747,7 @@ Total Root Mean Squared Error (RMSE) 11.692155204781924
 ```python
 stock_data_senti.head()
 ```
+
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -8268,6 +7904,7 @@ stock_data_senti.dropna(subset=['label_t1', 'label_t7'], inplace=True)
 # Display the updated stock_data_sentiset with labels
 stock_data_senti[['date', 'close', 'label_t1', 'label_t7']].head()
 ```
+
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -8347,6 +7984,7 @@ X = stock_data_senti[features]
 y_t1 = stock_data_senti['label_t1']
 y_t7 = stock_data_senti['label_t7']
 ```
+
 ## 2. Split Data
 
 ```python
@@ -8356,6 +7994,7 @@ from sklearn.model_selection import train_test_split
 X_train_t1, X_test_t1, y_train_t1, y_test_t1 = train_test_split(X, y_t1, test_size=0.2, random_state=42)
 X_train_t7, X_test_t7, y_train_t7, y_test_t7 = train_test_split(X, y_t7, test_size=0.2, random_state=42)
 ```
+
 ## 3. Normalize Features
 
 ```python
@@ -8370,6 +8009,7 @@ X_test_t1_scaled = scaler.transform(X_test_t1)
 X_train_t7_scaled = scaler.fit_transform(X_train_t7)
 X_test_t7_scaled = scaler.transform(X_test_t7)
 ```
+
 ## 4. Train Models
 
 ### Logistic Regression for  t+1
@@ -8395,6 +8035,7 @@ f1_t1 = f1_score(y_test_t1, y_pred_t1)
 # Display the evaluation metrics
 (precision_t1, recall_t1, f1_t1)
 ```
+
 (0.7214137214137214, 0.4894217207334274, 0.5831932773109244)
 
 ### Logistic Regression for  t+7
@@ -8417,6 +8058,7 @@ f1_t7 = f1_score(y_test_t7, y_pred_t7)
 # Display the evaluation metrics
 (precision_t7, recall_t7, f1_t7)
 ```
+
 (0.6255924170616114, 0.21019108280254778, 0.3146603098927294)
 
 ### Random Forest Classifier for  t+1  and  t+7
@@ -8454,6 +8096,7 @@ f1_t7_rf = f1_score(y_test_t7, y_pred_t7_rf)
 
 (precision_t1_rf, recall_t1_rf, f1_t1_rf), (precision_t7_rf, recall_t7_rf, f1_t7_rf)
 ```
+
 ((0.5789473684210527, 0.49647390691114246, 0.5345482156416097),
 (0.6872427983539094, 0.5318471337579618, 0.599640933572711))
 
@@ -8518,6 +8161,7 @@ plot_metrics(log_reg_metrics, 'Logistic Regression Performance Metrics')
 # Plot metrics for Random Forest
 plot_metrics(rf_metrics, 'Random Forest Performance Metrics')
 ```
+
 ![png](tweet_stock_files/tweet_stock_165_0.png)
 
 ![png](tweet_stock_files/tweet_stock_165_1.png)
@@ -8549,6 +8193,7 @@ best_model_t1 = grid_search_t1.best_estimator_
 
 best_params_t1
 ```
+
 Fitting 3 folds for each of 216 candidates, totalling 648 fits
 [CV] END bootstrap=True, max_depth=None, min_samples_leaf=1, min_samples_split=2, n_estimators=100; total time=   1.6s
 [CV] END bootstrap=True, max_depth=None, min_samples_leaf=1, min_samples_split=2, n_estimators=100; total time=   1.6s
@@ -9219,6 +8864,7 @@ best_model_t7 = grid_search_t7.best_estimator_
 
 best_params_t1, best_params_t7
 ```
+
 Fitting 3 folds for each of 216 candidates, totalling 648 fits
 [CV] END bootstrap=True, max_depth=None, min_samples_leaf=1, min_samples_split=2, n_estimators=100; total time=   1.9s
 [CV] END bootstrap=True, max_depth=None, min_samples_leaf=1, min_samples_split=2, n_estimators=100; total time=   2.0s
@@ -9900,6 +9546,7 @@ f1_t1_best = f1_score(y_test_t1, y_pred_t1_best)
 
 (precision_t1_best, recall_t1_best, f1_t1_best)
 ```
+
 (0.584518167456556, 0.5218617771509168, 0.5514157973174366)
 
 ### t+7  Model
@@ -9919,6 +9566,7 @@ f1_t7_best = f1_score(y_test_t7, y_pred_t7_best)
 
 (precision_t7_best, recall_t7_best, f1_t7_best)
 ```
+
 (0.67578125, 0.5509554140127388, 0.6070175438596491)
 
 ## Tuning Result Visualization
@@ -9966,6 +9614,7 @@ ax[1].legend()
 fig.tight_layout()
 plt.show()
 ```
+
 ![png](tweet_stock_files/tweet_stock_175_0.png)
 
 ## Market simulation
@@ -10004,6 +9653,7 @@ for i in range(len(X_test_t1) - 1):  # t+1, so we use data up to the second to l
 average_profit_t1 = sum(profits_t1) / len(profits_t1)
 average_profit_t1
 ```
+
 -25.751654738086735
 
 ```python
@@ -10027,6 +9677,7 @@ average_profit_t7 = sum(profits_t7) / len(profits_t7)
 average_profit_t7
 
 ```
+
 6230.212552126924
 
 ## Market Simulation Visualization
@@ -10053,11 +9704,13 @@ plt.ylabel('Frequency')
 plt.tight_layout()
 plt.show()
 ```
+
 ![png](tweet_stock_files/tweet_stock_181_0.png)
 
 ```python
 y_pred_t1_best
 ```
+
 array([1, 1, 1, ..., 1, 1, 0])
 
 ```python
@@ -10075,6 +9728,7 @@ plt.ylabel('Closing Price ($)')
 plt.legend()
 plt.show()
 ```
+
 ---
 
 NameError                                 Traceback (most recent call last)

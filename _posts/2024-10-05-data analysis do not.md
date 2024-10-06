@@ -1,7 +1,8 @@
 ---
 layout: single
 title: "문과생이 AI개발자 되는법 - 메타코드 강연 정리"
-categories: Data Analysis
+categories: Job
+tag: job
 ---
 강연자 : 6년차 AI 개발자
 
