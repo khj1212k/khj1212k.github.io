@@ -1,6 +1,7 @@
 ---
 layout: single
 title:  "데이터 분석가 취업실패이유 - 메타코드 강연 정리"
+categories: Data Analysis
 ---
 강연자 정보 : 비전공자 출신, 직무전환, 채용 면접관
 
