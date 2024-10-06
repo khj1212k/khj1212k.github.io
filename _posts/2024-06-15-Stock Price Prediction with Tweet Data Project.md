@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: single
 title: "Stock Price Prediction with Tweet Data Project"
 ---
 # 0. import
@@ -52,7 +52,7 @@ class display(object):
     </div>"""
     def __init__(self, *args):
         self.args = args
-      
+    
     def _repr_html_(self):
         return '\n'.join(self.template.format(a, eval(a)._repr_html_())
                          for a in self.args)
@@ -73,6 +73,7 @@ print(Tweet_li)
 
 ['AMZN.csv', 'MSFT.csv', 'TSLA.csv', 'GOOGL.csv', 'GOOG.csv', 'AAPL.csv']
 ['Company.csv', 'Company_Tweet.csv', 'Tweet.csv']
+
 ```python
 AAPL = pd.read_csv('data/Stock_price/AAPL.csv')
 AMZN = pd.read_csv('data/Stock_price/AMZN.csv')
@@ -88,6 +89,7 @@ MSFT['ticker_symbol'] = 'MSFT'
 TSLA['ticker_symbol'] = 'TSLA'
 display('AAPL','AMZN','GOOG','GOOGL','MSFT','TSLA')
 ```
+
 <div style="float: left; padding: 10px;">
     <p style='font-family:"Courier New", Courier, monospace'>AAPL</p><div>
 <style scoped>
@@ -96,13 +98,14 @@ display('AAPL','AMZN','GOOG','GOOGL','MSFT','TSLA')
     }
 
 .dataframe tbody tr th {
-    vertical-align: top;
+vertical-align: top;
 }
 
 .dataframe thead th {
-    text-align: right;
+text-align: right;
 }
 </style>
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -254,295 +257,6 @@ display('AAPL','AMZN','GOOG','GOOGL','MSFT','TSLA')
 
   
 
-
-
-
-```python
-Company_Tweet = pd.read_csv('data/Tweet/Company_Tweet.csv')
-Company = pd.read_csv('data/Tweet/Company.csv')
-Tweet = pd.read_csv('data/Tweet/Tweet.csv')
-display('Company_Tweet','Company','Tweet')
-```
-<div style="float: left; padding: 10px;">
-    <p style='font-family:"Courier New", Courier, monospace'>Company_Tweet</p><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-.dataframe tbody tr th {
-    vertical-align: top;
-}
-
-.dataframe thead th {
-    text-align: right;
-}
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>tweet_id</th>
-      <th>ticker_symbol</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>550803612197457920</td>
-      <td>AAPL</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>550803610825928706</td>
-      <td>AAPL</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>550803225113157632</td>
-      <td>AAPL</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>550802957370159104</td>
-      <td>AAPL</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>550802855129382912</td>
-      <td>AAPL</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>4336440</th>
-      <td>1212158772015034369</td>
-      <td>TSLA</td>
-    </tr>
-    <tr>
-      <th>4336441</th>
-      <td>1212159099632267268</td>
-      <td>TSLA</td>
-    </tr>
-    <tr>
-      <th>4336442</th>
-      <td>1212159184931717120</td>
-      <td>TSLA</td>
-    </tr>
-    <tr>
-      <th>4336443</th>
-      <td>1212159838882533376</td>
-      <td>TSLA</td>
-    </tr>
-    <tr>
-      <th>4336444</th>
-      <td>1212160015332728833</td>
-      <td>TSLA</td>
-    </tr>
-  </tbody>
-</table>
-<p>4336445 rows × 2 columns</p>
-</div>
-    </div>
-<div style="float: left; padding: 10px;">
-    <p style='font-family:"Courier New", Courier, monospace'>Company</p><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-
-  
-
-# 2. Data Cleaning
-
-```python
-# Check for missing values
-print("Missing values in AAPL:", AAPL.isnull().sum())
-print("Missing values in AMZN:", AMZN.isnull().sum())
-print("Missing values in GOOG:", GOOG.isnull().sum())
-print("Missing values in GOOGL:", GOOGL.isnull().sum())
-print("Missing values in MSFT:", MSFT.isnull().sum())
-print("Missing values in TSLA:", TSLA.isnull().sum())
-print("Missing values in Company:", Company.isnull().sum())
-print("Missing values in Tweet:", Tweet.isnull().sum())
-```
-Missing values in AAPL: date             0
-open             0
-high             0
-low              0
-close            0
-adj close        0
-volume           0
-ticker_symbol    0
-dtype: int64
-Missing values in AMZN: date             0
-open             0
-high             0
-low              0
-close            0
-adj close        0
-volume           0
-ticker_symbol    0
-dtype: int64
-Missing values in GOOG: date             0
-volume           0
-open             0
-high             0
-low              0
-close            0
-adj close        0
-ticker_symbol    0
-dtype: int64
-Missing values in GOOGL: date             0
-open             0
-high             0
-low              0
-close            0
-adj close        0
-volume           0
-ticker_symbol    0
-dtype: int64
-Missing values in MSFT: date             0
-volume           0
-open             0
-high             0
-low              0
-close            0
-adj close        0
-ticker_symbol    0
-dtype: int64
-Missing values in TSLA: date             0
-volume           0
-open             0
-high             0
-low              0
-close            0
-adj close        0
-ticker_symbol    0
-dtype: int64
-Missing values in Company: ticker_symbol    0
-company_name     0
-dtype: int64
-Missing values in Tweet: tweet_id           0
-writer         47273
-post_date          0
-body               0
-comment_num        0
-retweet_num        0
-like_num           0
-dtype: int64
-```python
-# Handle missing values in the tweet dataset
-Tweet['writer'].fillna('Unknown', inplace=True)
-
-# Verify that there are no more missing values
-print("Missing values in Tweet after handling:", Tweet.isnull().sum())
-```
-Missing values in Tweet after handling: tweet_id       0
-writer         0
-post_date      0
-body           0
-comment_num    0
-retweet_num    0
-like_num       0
-dtype: int64
-```python
-# Convert date columns to datetime format
-AAPL['date'] = pd.to_datetime(AAPL['date'])
-AMZN['date'] = pd.to_datetime(AMZN['date'])
-GOOG['date'] = pd.to_datetime(GOOG['date'])
-GOOGL['date'] = pd.to_datetime(GOOGL['date'])
-MSFT['date'] = pd.to_datetime(MSFT['date'])
-TSLA['date'] = pd.to_datetime(TSLA['date'])
-Tweet['post_date'] = pd.to_datetime(Tweet['post_date'], unit='s')
-Tweet.head()
-```
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-.dataframe tbody tr th {
-    vertical-align: top;
-}
-
-.dataframe thead th {
-    text-align: right;
-}
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>tweet_id</th>
-      <th>writer</th>
-      <th>post_date</th>
-      <th>body</th>
-      <th>comment_num</th>
-      <th>retweet_num</th>
-      <th>like_num</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>550441509175443456</td>
-      <td>VisualStockRSRC</td>
-      <td>2015-01-01 00:00:57</td>
-      <td>lx21 made $10,008  on $AAPL -Check it out! htt...</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>550441672312512512</td>
-      <td>KeralaGuy77</td>
-      <td>2015-01-01 00:01:36</td>
-      <td>Insanity of today weirdo massive selling. $aap...</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>550441732014223360</td>
-      <td>DozenStocks</td>
-      <td>2015-01-01 00:01:50</td>
-      <td>S&P100 #Stocks Performance $HD $LOW $SBUX $TGT...</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>550442977802207232</td>
-      <td>ShowDreamCar</td>
-      <td>2015-01-01 00:06:47</td>
-      <td>$GM $TSLA: Volkswagen Pushes 2014 Record Recal...</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>550443807834402816</td>
-      <td>i_Know_First</td>
-      <td>2015-01-01 00:10:05</td>
-      <td>Swing Trading: Up To 8.91% Return In 14 Days h...</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
 ```python
 # Display data types to verify the conversion
 print("Data types in AAPL:", AAPL.dtypes)
@@ -553,6 +267,7 @@ print("Data types in MSFT:", MSFT.dtypes)
 print("Data types in TSLA:", TSLA.dtypes)
 print("Data types in Tweet:", Tweet.dtypes)
 ```
+
 Data types in AAPL: date             datetime64[ns]
 open                    float64
 high                    float64
@@ -615,6 +330,7 @@ comment_num             int64
 retweet_num             int64
 like_num                int64
 dtype: object
+
 # 3. Merge DataFrames
 
 ```python
@@ -622,6 +338,7 @@ dtype: object
 stock_data = pd.concat([AAPL, AMZN, GOOG, GOOGL, MSFT, TSLA])
 stock_data
 ```
+
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -629,13 +346,14 @@ stock_data
     }
 
 .dataframe tbody tr th {
-    vertical-align: top;
+vertical-align: top;
 }
 
 .dataframe thead th {
-    text-align: right;
+text-align: right;
 }
 </style>
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -786,6 +504,7 @@ plt.ylabel('Close Price')
 plt.legend(title='Ticker Symbol')
 plt.show()
 ```
+
 ![png](tweet_stock_files/tweet_stock_13_0.png)
 
 ```python
@@ -797,6 +516,7 @@ Tweet['date'] = pd.to_datetime(Tweet['date'])
 Tweet = Tweet.merge(Company_Tweet, how='left', on = 'tweet_id')
 Tweet.head()
 ```
+
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -804,13 +524,14 @@ Tweet.head()
     }
 
 .dataframe tbody tr th {
-    vertical-align: top;
+vertical-align: top;
 }
 
 .dataframe thead th {
-    text-align: right;
+text-align: right;
 }
 </style>
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -894,6 +615,7 @@ Tweet.head()
 ```python
 stock_data.describe()
 ```
+
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -901,13 +623,14 @@ stock_data.describe()
     }
 
 .dataframe tbody tr th {
-    vertical-align: top;
+vertical-align: top;
 }
 
 .dataframe thead th {
-    text-align: right;
+text-align: right;
 }
 </style>
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1009,6 +732,7 @@ stock_data.describe()
 ```python
 Tweet.describe()
 ```
+
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1016,13 +740,14 @@ Tweet.describe()
     }
 
 .dataframe tbody tr th {
-    vertical-align: top;
+vertical-align: top;
 }
 
 .dataframe thead th {
-    text-align: right;
+text-align: right;
 }
 </style>
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1115,10 +840,13 @@ Tweet.describe()
 ```python
 stock_data.date.min(),stock_data.date.max()
 ```
+
 (Timestamp('1980-12-12 00:00:00'), Timestamp('2023-12-28 00:00:00'))
+
 ```python
 Tweet.post_date.min(),Tweet.post_date.max()
 ```
+
 (Timestamp('2015-01-01 00:00:57'), Timestamp('2019-12-31 23:55:53'))
 `주식 데이터는 시간 범위가 1980부터 2023까지 넓은데 트위터 데이터는 지금 2015-2019까지밖에 없다. 어쩔수 없이 주식 데이터를 조금 포기해야한다.`
 
@@ -1128,6 +856,7 @@ merged_data = pd.merge(Tweet,stock_data, how='inner', on=['ticker_symbol', 'date
 
 merged_data.head()
 ```
+
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1135,13 +864,14 @@ merged_data.head()
     }
 
 .dataframe tbody tr th {
-    vertical-align: top;
+vertical-align: top;
 }
 
 .dataframe thead th {
-    text-align: right;
+text-align: right;
 }
 </style>
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1268,6 +998,7 @@ merged_data[merged_data['date'] == merged_data['date'].max()].groupby('ticker_sy
 # 아님 저것도 그때의 추세에 따라서 나오는 광고이니까 그 추세를 반영하는 데이터일까?
 # Don't miss our next FREE OPTION TRADE.  Sign up for our Daily Free Trades at http://ow.ly/OIWZ30q4T8t $NVDA $TSLA $GS $C $WFC $GOOGL $FB
 ```
+
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1275,13 +1006,14 @@ merged_data[merged_data['date'] == merged_data['date'].max()].groupby('ticker_sy
     }
 
 .dataframe tbody tr th {
-    vertical-align: top;
+vertical-align: top;
 }
 
 .dataframe thead th {
-    text-align: right;
+text-align: right;
 }
 </style>
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1449,6 +1181,7 @@ merged_data[merged_data['date'] == merged_data['date'].max()].groupby('ticker_sy
 # Descriptive statistics
 merged_data.describe()
 ```
+
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1456,13 +1189,14 @@ merged_data.describe()
     }
 
 .dataframe tbody tr th {
-    vertical-align: top;
+vertical-align: top;
 }
 
 .dataframe thead th {
-    text-align: right;
+text-align: right;
 }
 </style>
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1618,137 +1352,125 @@ plt.ylabel('Close Price')
 plt.legend(title='Ticker Symbol')
 plt.show()
 ```
----------------------------------------------------------------------------
+
+---
 
 KeyboardInterrupt                         Traceback (most recent call last)
 
 Cell In[439], line 3
-      1 # Plot time series of stock prices for each company
-      2 plt.figure(figsize=(14, 7))
+1 # Plot time series of stock prices for each company
+2 plt.figure(figsize=(14, 7))
 ----> 3 sns.lineplot(data=merged_data, x='date', y='close', hue='ticker_symbol')
-      4 plt.title('Stock Prices Over Time')
-      5 plt.xlabel('Date')
-
+4 plt.title('Stock Prices Over Time')
+5 plt.xlabel('Date')
 
 File /Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/seaborn/relational.py:500, in lineplot(data, x, y, hue, size, style, units, palette, hue_order, hue_norm, sizes, size_order, size_norm, dashes, markers, style_order, estimator, errorbar, n_boot, seed, orient, sort, err_style, err_kws, legend, ci, ax, **kwargs)
-    497 if not p.has_xy_data:
-    498     return ax
+497 if not p.has_xy_data:
+498     return ax
 --> 500 p._attach(ax)
-    502 # Other functions have color as an explicit param,
-    503 # and we should probably do that here too
-    504 color = kwargs.pop("color", kwargs.pop("c", None))
-
+502 # Other functions have color as an explicit param,
+503 # and we should probably do that here too
+504 color = kwargs.pop("color", kwargs.pop("c", None))
 
 File /Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/seaborn/_base.py:1127, in VectorPlotter._attach(self, obj, allowed_types, log_scale)
-   1125 # Now actually update the matplotlib objects to do the conversion we want
-   1126 grouped = self.plot_data[var].groupby(self.converters[var], sort=False)
+1125 # Now actually update the matplotlib objects to do the conversion we want
+1126 grouped = self.plot_data[var].groupby(self.converters[var], sort=False)
 -> 1127 for converter, seed_data in grouped:
-   1128     if self.var_types[var] == "categorical":
-   1129         if self._var_ordered[var]:
-
+1128     if self.var_types[var] == "categorical":
+1129         if self._var_ordered[var]:
 
 File /Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/pandas/core/groupby/ops.py:602, in BaseGrouper.get_iterator(self, data, axis)
-    591 def get_iterator(
-    592     self, data: NDFrameT, axis: AxisInt = 0
-    593 ) -> Iterator[tuple[Hashable, NDFrameT]]:
-    594     """
-    595     Groupby iterator
-    596 
-   (...)
-    600     for each group
-    601     """
+591 def get_iterator(
+592     self, data: NDFrameT, axis: AxisInt = 0
+593 ) -> Iterator[tuple[Hashable, NDFrameT]]:
+594     """
+595     Groupby iterator
+596
+(...)
+600     for each group
+601     """
 --> 602     splitter = self._get_splitter(data, axis=axis)
-    603     keys = self.group_keys_seq
-    604     yield from zip(keys, splitter)
-
+603     keys = self.group_keys_seq
+604     yield from zip(keys, splitter)
 
 File /Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/pandas/core/groupby/ops.py:613, in BaseGrouper._get_splitter(self, data, axis)
-    606 @final
-    607 def _get_splitter(self, data: NDFrame, axis: AxisInt = 0) -> DataSplitter:
-    608     """
-    609     Returns
-    610     -------
-    611     Generator yielding subsetted objects
-    612     """
+606 @final
+607 def _get_splitter(self, data: NDFrame, axis: AxisInt = 0) -> DataSplitter:
+608     """
+609     Returns
+610     -------
+611     Generator yielding subsetted objects
+612     """
 --> 613     ids, _, ngroups = self.group_info
-    614     return _get_splitter(
-    615         data,
-    616         ids,
-   (...)
-    620         axis=axis,
-    621     )
-
+614     return _get_splitter(
+615         data,
+616         ids,
+(...)
+620         axis=axis,
+621     )
 
 File properties.pyx:36, in pandas._libs.properties.CachedProperty.__get__()
-
 
 File /Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/pandas/core/groupby/ops.py:729, in BaseGrouper.group_info(self)
-    727 @cache_readonly
-    728 def group_info(self) -> tuple[npt.NDArray[np.intp], npt.NDArray[np.intp], int]:
+727 @cache_readonly
+728 def group_info(self) -> tuple[npt.NDArray[np.intp], npt.NDArray[np.intp], int]:
 --> 729     comp_ids, obs_group_ids = self._get_compressed_codes()
-    731     ngroups = len(obs_group_ids)
-    732     comp_ids = ensure_platform_int(comp_ids)
-
+731     ngroups = len(obs_group_ids)
+732     comp_ids = ensure_platform_int(comp_ids)
 
 File /Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/pandas/core/groupby/ops.py:753, in BaseGrouper._get_compressed_codes(self)
-    750     # FIXME: compress_group_index's second return value is int64, not intp
-    752 ping = self.groupings[0]
+750     # FIXME: compress_group_index's second return value is int64, not intp
+752 ping = self.groupings[0]
 --> 753 return ping.codes, np.arange(len(ping.group_index), dtype=np.intp)
 
-
 File /Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/pandas/core/groupby/grouper.py:691, in Grouping.codes(self)
-    689 @property
-    690 def codes(self) -> npt.NDArray[np.signedinteger]:
+689 @property
+690 def codes(self) -> npt.NDArray[np.signedinteger]:
 --> 691     return self._codes_and_uniques[0]
-
 
 File properties.pyx:36, in pandas._libs.properties.CachedProperty.__get__()
 
-
 File /Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/pandas/core/groupby/grouper.py:801, in Grouping._codes_and_uniques(self)
-    796     uniques = self._uniques
-    797 else:
-    798     # GH35667, replace dropna=False with use_na_sentinel=False
-    799     # error: Incompatible types in assignment (expression has type "Union[
-    800     # ndarray[Any, Any], Index]", variable has type "Categorical")
+796     uniques = self._uniques
+797 else:
+798     # GH35667, replace dropna=False with use_na_sentinel=False
+799     # error: Incompatible types in assignment (expression has type "Union[
+800     # ndarray[Any, Any], Index]", variable has type "Categorical")
 --> 801     codes, uniques = algorithms.factorize(  # type: ignore[assignment]
-    802         self.grouping_vector, sort=self._sort, use_na_sentinel=self._dropna
-    803     )
-    804 return codes, uniques
-
+802         self.grouping_vector, sort=self._sort, use_na_sentinel=self._dropna
+803     )
+804 return codes, uniques
 
 File /Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/pandas/core/algorithms.py:795, in factorize(values, sort, use_na_sentinel, size_hint)
-    792             # Don't modify (potentially user-provided) array
-    793             values = np.where(null_mask, na_value, values)
+792             # Don't modify (potentially user-provided) array
+793             values = np.where(null_mask, na_value, values)
 --> 795     codes, uniques = factorize_array(
-    796         values,
-    797         use_na_sentinel=use_na_sentinel,
-    798         size_hint=size_hint,
-    799     )
-    801 if sort and len(uniques) > 0:
-    802     uniques, codes = safe_sort(
-    803         uniques,
-    804         codes,
-   (...)
-    807         verify=False,
-    808     )
-
+796         values,
+797         use_na_sentinel=use_na_sentinel,
+798         size_hint=size_hint,
+799     )
+801 if sort and len(uniques) > 0:
+802     uniques, codes = safe_sort(
+803         uniques,
+804         codes,
+(...)
+807         verify=False,
+808     )
 
 File /Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/pandas/core/algorithms.py:595, in factorize_array(values, use_na_sentinel, size_hint, na_value, mask)
-    592 hash_klass, values = _get_hashtable_algo(values)
-    594 table = hash_klass(size_hint or len(values))
+592 hash_klass, values = _get_hashtable_algo(values)
+594 table = hash_klass(size_hint or len(values))
 --> 595 uniques, codes = table.factorize(
-    596     values,
-    597     na_sentinel=-1,
-    598     na_value=na_value,
-    599     mask=mask,
-    600     ignore_na=use_na_sentinel,
-    601 )
-    603 # re-cast e.g. i8->dt64/td64, uint8->bool
-    604 uniques = _reconstruct_data(uniques, original.dtype, original)
+596     values,
+597     na_sentinel=-1,
+598     na_value=na_value,
+599     mask=mask,
+600     ignore_na=use_na_sentinel,
+601 )
+603 # re-cast e.g. i8->dt64/td64, uint8->bool
+604 uniques = _reconstruct_data(uniques, original.dtype, original)
 
-
-KeyboardInterrupt: 
+KeyboardInterrupt:
 ![png](tweet_stock_files/tweet_stock_25_1.png)
 
 ```python
@@ -1777,6 +1499,7 @@ plt.ylabel('Number of Tweets')
 plt.legend(title='Ticker Symbol')
 plt.show()
 ```
+
 ![png](tweet_stock_files/tweet_stock_26_0.png)
 
 ## Feature Engineering
@@ -1815,14 +1538,15 @@ stock_data[['total_engagement', 'tweet_volume']].fillna(0, inplace=True)
 print("Stock Data with Tweet Features:")
 stock_data.head()
 ```
+
 Stock Data with Tweet Features:
 
-
-/var/folders/12/vb6sch5j7lx93jxvhtgjvhyh0000gn/T/ipykernel_61982/1428808705.py:28: SettingWithCopyWarning: 
+/var/folders/12/vb6sch5j7lx93jxvhtgjvhyh0000gn/T/ipykernel_61982/1428808705.py:28: SettingWithCopyWarning:
 A value is trying to be set on a copy of a slice from a DataFrame
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
-  stock_data[['total_engagement', 'tweet_volume']].fillna(0, inplace=True)
+stock_data[['total_engagement', 'tweet_volume']].fillna(0, inplace=True)
+
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1830,13 +1554,14 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
     }
 
 .dataframe tbody tr th {
-    vertical-align: top;
+vertical-align: top;
 }
 
 .dataframe thead th {
-    text-align: right;
+text-align: right;
 }
 </style>
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1945,7 +1670,9 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 print("Tweet Data with Features:")
 Tweet.head()
 ```
+
 Tweet Data with Features:
+
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1953,13 +1680,14 @@ Tweet Data with Features:
     }
 
 .dataframe tbody tr th {
-    vertical-align: top;
+vertical-align: top;
 }
 
 .dataframe thead th {
-    text-align: right;
+text-align: right;
 }
 </style>
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -2067,6 +1795,7 @@ Tweet Data with Features:
 stock_data = pd.read_csv('stock_data.csv',index_col=0)
 stock_data
 ```
+
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -2074,13 +1803,14 @@ stock_data
     }
 
 .dataframe tbody tr th {
-    vertical-align: top;
+vertical-align: top;
 }
 
 .dataframe thead th {
-    text-align: right;
+text-align: right;
 }
 </style>
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -2310,6 +2040,7 @@ def get_wordnet_pos(word):
     else:
         return wordnet.NOUN
 ```
+
 ```python
 from nltk.tokenize import TweetTokenizer
 from nltk.corpus import stopwords
@@ -2352,7 +2083,9 @@ Tweet['cleaned_body'] = Tweet['body'].progress_apply(clean_text)
 Tweet.to_csv('Tweet_after_cleaned.csv')
 Tweet[['body', 'cleaned_body']].head()
 ```
+
 100%|██████████| 4336445/4336445 [1:10:22<00:00, 1026.93it/s]
+
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -2360,13 +2093,14 @@ Tweet[['body', 'cleaned_body']].head()
     }
 
 .dataframe tbody tr th {
-    vertical-align: top;
+vertical-align: top;
 }
 
 .dataframe thead th {
-    text-align: right;
+text-align: right;
 }
 </style>
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -2409,6 +2143,7 @@ Tweet[['body', 'cleaned_body']].head()
 Tweet = pd.read_csv('Tweet_after_cleaned.csv',index_col=0)
 Tweet.head()
 ```
+
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -2416,13 +2151,14 @@ Tweet.head()
     }
 
 .dataframe tbody tr th {
-    vertical-align: top;
+vertical-align: top;
 }
 
 .dataframe thead th {
-    text-align: right;
+text-align: right;
 }
 </style>
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -2541,6 +2277,7 @@ Tweet.head()
 # Tweet['sentiment'] = Tweet['lemmatized_body'].progress_apply(lambda x: get_sentiment(x).tolist())
 # Tweet[['lemmatized_body', 'sentiment']].head()
 ```
+
 - POS 과정에서 NaN이 생겻다.
 - 그래서 fillna(' ') 공백으로 변경해서 해결
 
@@ -2549,6 +2286,7 @@ Tweet.head()
 ```python
 # !pip install vaderSentiment
 ```
+
 ```python
 import pandas as pd
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
@@ -2577,143 +2315,132 @@ Tweet_vader = pd.concat([Tweet_vader, sentiment_df], axis=1)
 Tweet_vader.to_csv('Tweet_vader.csv')
 Tweet_vader.head()
 ```
- 14%|█▎        | 591772/4336445 [00:12<01:20, 46588.32it/s]
 
+14%|█▎        | 591772/4336445 [00:12<01:20, 46588.32it/s]
 
-
----------------------------------------------------------------------------
+---
 
 KeyboardInterrupt                         Traceback (most recent call last)
 
 Cell In[34], line 17
-     15 Tweet['cleaned_body'].fillna('', inplace=True)
-     16 tqdm.pandas()
+15 Tweet['cleaned_body'].fillna('', inplace=True)
+16 tqdm.pandas()
 ---> 17 sentiment_vader = Tweet['cleaned_body'].progress_apply(lambda x: analyze_sentiment_vader(x))
-     19 # VADER 결과를 데이터프레임으로 변환하고 병합
-     20 Tweet_vader = deepcopy(Tweet)
-
+19 # VADER 결과를 데이터프레임으로 변환하고 병합
+20 Tweet_vader = deepcopy(Tweet)
 
 File /Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/tqdm/std.py:920, in tqdm.pandas.<locals>.inner_generator.<locals>.inner(df, func, *args, **kwargs)
-    917 # Apply the provided function (in **kwargs)
-    918 # on the df using our wrapper (which provides bar updating)
-    919 try:
+917 # Apply the provided function (in **kwargs)
+918 # on the df using our wrapper (which provides bar updating)
+919 try:
 --> 920     return getattr(df, df_function)(wrapper, **kwargs)
-    921 finally:
-    922     t.close()
-
+921 finally:
+922     t.close()
 
 File /Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/pandas/core/series.py:4753, in Series.apply(self, func, convert_dtype, args, by_row, **kwargs)
-   4625 def apply(
-   4626     self,
-   4627     func: AggFuncType,
-   (...)
-   4632     **kwargs,
-   4633 ) -> DataFrame | Series:
-   4634     """
-   4635     Invoke function on values of Series.
-   4636 
-   (...)
-   4751     dtype: float64
-   4752     """
+4625 def apply(
+4626     self,
+4627     func: AggFuncType,
+(...)
+4632     **kwargs,
+4633 ) -> DataFrame | Series:
+4634     """
+4635     Invoke function on values of Series.
+4636
+(...)
+4751     dtype: float64
+4752     """
 -> 4753     return SeriesApply(
-   4754         self,
-   4755         func,
-   4756         convert_dtype=convert_dtype,
-   4757         by_row=by_row,
-   4758         args=args,
-   4759         kwargs=kwargs,
-   4760     ).apply()
-
+4754         self,
+4755         func,
+4756         convert_dtype=convert_dtype,
+4757         by_row=by_row,
+4758         args=args,
+4759         kwargs=kwargs,
+4760     ).apply()
 
 File /Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/pandas/core/apply.py:1207, in SeriesApply.apply(self)
-   1204     return self.apply_compat()
-   1206 # self.func is Callable
+1204     return self.apply_compat()
+1206 # self.func is Callable
 -> 1207 return self.apply_standard()
 
-
 File /Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/pandas/core/apply.py:1287, in SeriesApply.apply_standard(self)
-   1281 # row-wise access
-   1282 # apply doesn't have a `na_action` keyword and for backward compat reasons
-   1283 # we need to give `na_action="ignore"` for categorical data.
-   1284 # TODO: remove the `na_action="ignore"` when that default has been changed in
-   1285 #  Categorical (GH51645).
-   1286 action = "ignore" if isinstance(obj.dtype, CategoricalDtype) else None
+1281 # row-wise access
+1282 # apply doesn't have a `na_action` keyword and for backward compat reasons
+1283 # we need to give `na_action="ignore"` for categorical data.
+1284 # TODO: remove the `na_action="ignore"` when that default has been changed in
+1285 #  Categorical (GH51645).
+1286 action = "ignore" if isinstance(obj.dtype, CategoricalDtype) else None
 -> 1287 mapped = obj._map_values(
-   1288     mapper=curried, na_action=action, convert=self.convert_dtype
-   1289 )
-   1291 if len(mapped) and isinstance(mapped[0], ABCSeries):
-   1292     # GH#43986 Need to do list(mapped) in order to get treated as nested
-   1293     #  See also GH#25959 regarding EA support
-   1294     return obj._constructor_expanddim(list(mapped), index=obj.index)
-
+1288     mapper=curried, na_action=action, convert=self.convert_dtype
+1289 )
+1291 if len(mapped) and isinstance(mapped[0], ABCSeries):
+1292     # GH#43986 Need to do list(mapped) in order to get treated as nested
+1293     #  See also GH#25959 regarding EA support
+1294     return obj._constructor_expanddim(list(mapped), index=obj.index)
 
 File /Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/pandas/core/base.py:921, in IndexOpsMixin._map_values(self, mapper, na_action, convert)
-    918 if isinstance(arr, ExtensionArray):
-    919     return arr.map(mapper, na_action=na_action)
+918 if isinstance(arr, ExtensionArray):
+919     return arr.map(mapper, na_action=na_action)
 --> 921 return algorithms.map_array(arr, mapper, na_action=na_action, convert=convert)
 
-
 File /Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/pandas/core/algorithms.py:1814, in map_array(arr, mapper, na_action, convert)
-   1812 values = arr.astype(object, copy=False)
-   1813 if na_action is None:
+1812 values = arr.astype(object, copy=False)
+1813 if na_action is None:
 -> 1814     return lib.map_infer(values, mapper, convert=convert)
-   1815 else:
-   1816     return lib.map_infer_mask(
-   1817         values, mapper, mask=isna(values).view(np.uint8), convert=convert
-   1818     )
-
+1815 else:
+1816     return lib.map_infer_mask(
+1817         values, mapper, mask=isna(values).view(np.uint8), convert=convert
+1818     )
 
 File lib.pyx:2920, in pandas._libs.lib.map_infer()
 
-
 File /Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/tqdm/std.py:915, in tqdm.pandas.<locals>.inner_generator.<locals>.inner.<locals>.wrapper(*args, **kwargs)
-    909 def wrapper(*args, **kwargs):
-    910     # update tbar correctly
-    911     # it seems `pandas apply` calls `func` twice
-    912     # on the first column/row to decide whether it can
-    913     # take a fast or slow code path; so stop when t.total==t.n
-    914     t.update(n=1 if not t.total or t.n < t.total else 0)
+909 def wrapper(*args, **kwargs):
+910     # update tbar correctly
+911     # it seems `pandas apply` calls `func` twice
+912     # on the first column/row to decide whether it can
+913     # take a fast or slow code path; so stop when t.total==t.n
+914     t.update(n=1 if not t.total or t.n < t.total else 0)
 --> 915     return func(*args, **kwargs)
 
-
 Cell In[34], line 17, in <lambda>(x)
-     15 Tweet['cleaned_body'].fillna('', inplace=True)
-     16 tqdm.pandas()
+15 Tweet['cleaned_body'].fillna('', inplace=True)
+16 tqdm.pandas()
 ---> 17 sentiment_vader = Tweet['cleaned_body'].progress_apply(lambda x: analyze_sentiment_vader(x))
-     19 # VADER 결과를 데이터프레임으로 변환하고 병합
-     20 Tweet_vader = deepcopy(Tweet)
-
+19 # VADER 결과를 데이터프레임으로 변환하고 병합
+20 Tweet_vader = deepcopy(Tweet)
 
 Cell In[34], line 11, in analyze_sentiment_vader(text)
-     10 def analyze_sentiment_vader(text):
+10 def analyze_sentiment_vader(text):
 ---> 11     scores = analyzer.polarity_scores(text)
-     12     return scores
-
+12     return scores
 
 File /Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/vaderSentiment/vaderSentiment.py:242, in SentimentIntensityAnalyzer.polarity_scores(self, text)
-    240 prev_space = True
-    241 for chr in text:
+240 prev_space = True
+241 for chr in text:
 --> 242     if chr in self.emojis:
-    243         # get the textual description
-    244         description = self.emojis[chr]
-    245         if not prev_space:
+243         # get the textual description
+244         description = self.emojis[chr]
+245         if not prev_space:
 
+KeyboardInterrupt:
 
-KeyboardInterrupt: 
 ```python
 senti_vader = sentiment_df
 senti_vader.to_csv('senti_vader.csv',index=False)
 ```
----------------------------------------------------------------------------
+
+---
 
 NameError                                 Traceback (most recent call last)
 
 Cell In[30], line 1
 ----> 1 senti_vader = sentiment_df
-      2 senti_vader.to_csv('senti_vader.csv',index=False)
-
+2 senti_vader.to_csv('senti_vader.csv',index=False)
 
 NameError: name 'sentiment_df' is not defined
+
 ```python
 Tweet_vader = pd.read_csv('Tweet_vader.csv',index_col=False)
 # engagement_weight 계산 - 1을 더해서 가중치가 1부터 시작하게 함
@@ -2730,6 +2457,7 @@ senti_vader_mean = Tweet_vader.groupby(['date', 'ticker_symbol'])['final_compoun
 senti_vader_mean.columns = ['date', 'ticker_symbol','polarity']
 senti_vader_mean
 ```
+
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -2737,13 +2465,14 @@ senti_vader_mean
     }
 
 .dataframe tbody tr th {
-    vertical-align: top;
+vertical-align: top;
 }
 
 .dataframe thead th {
-    text-align: right;
+text-align: right;
 }
 </style>
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -2830,8 +2559,9 @@ senti_vader_mean
 ```python
 # !pip install textblob
 ```
+
 Collecting textblob
-  Downloading textblob-0.18.0.post0-py3-none-any.whl.metadata (4.5 kB)
+Downloading textblob-0.18.0.post0-py3-none-any.whl.metadata (4.5 kB)
 Requirement already satisfied: nltk>=3.8 in /Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages (from textblob) (3.8.1)
 Requirement already satisfied: click in /Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages (from nltk>=3.8->textblob) (8.1.7)
 Requirement already satisfied: joblib in /Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages (from nltk>=3.8->textblob) (1.3.2)
@@ -2841,6 +2571,7 @@ Downloading textblob-0.18.0.post0-py3-none-any.whl (626 kB)
 [2K   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m626.3/626.3 kB[0m [31m288.3 kB/s[0m eta [36m0:00:00[0m00:01[0m00:01[0m
 [?25hInstalling collected packages: textblob
 Successfully installed textblob-0.18.0.post0
+
 ```python
 from textblob import TextBlob
 
@@ -2872,7 +2603,9 @@ Tweet_textblob.to_csv('Tweet_textblob.csv')
 # 결과 표시
 Tweet_textblob.head()
 ```
-100%|██████████| 4336445/4336445 [13:09<00:00, 5495.27it/s] 
+
+100%|██████████| 4336445/4336445 [13:09<00:00, 5495.27it/s]
+
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -2880,13 +2613,14 @@ Tweet_textblob.head()
     }
 
 .dataframe tbody tr th {
-    vertical-align: top;
+vertical-align: top;
 }
 
 .dataframe thead th {
-    text-align: right;
+text-align: right;
 }
 </style>
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -3016,6 +2750,7 @@ senti_textblob_mean.columns = ['date', 'ticker_symbol','polarity']
 # 결과 출력
 senti_textblob_mean
 ```
+
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -3023,13 +2758,14 @@ senti_textblob_mean
     }
 
 .dataframe tbody tr th {
-    vertical-align: top;
+vertical-align: top;
 }
 
 .dataframe thead th {
-    text-align: right;
+text-align: right;
 }
 </style>
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -3122,6 +2858,7 @@ combined_tweets['cleaned_body'].fillna('', inplace=True)
 # Display the combined tweets
 combined_tweets.head(10)
 ```
+
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -3129,13 +2866,14 @@ combined_tweets.head(10)
     }
 
 .dataframe tbody tr th {
-    vertical-align: top;
+vertical-align: top;
 }
 
 .dataframe thead th {
-    text-align: right;
+text-align: right;
 }
 </style>
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -3255,93 +2993,90 @@ Tweet_auto.to_csv('Tweet_auto.csv')
 # Display the results
 Tweet_auto.head()
 ```
----------------------------------------------------------------------------
+
+---
 
 Exception                                 Traceback (most recent call last)
 
 Cell In[15], line 10
-      8 # Load pre-trained model and tokenizer
-      9 MODEL = f"cardiffnlp/twitter-xlm-roberta-base-sentiment"
+8 # Load pre-trained model and tokenizer
+9 MODEL = f"cardiffnlp/twitter-xlm-roberta-base-sentiment"
 ---> 10 tokenizer = AutoTokenizer.from_pretrained(MODEL)
-     11 config = AutoConfig.from_pretrained(MODEL)
-     13 # TF
-
+11 config = AutoConfig.from_pretrained(MODEL)
+13 # TF
 
 File /Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/transformers/models/auto/tokenization_auto.py:591, in AutoTokenizer.from_pretrained(cls, pretrained_model_name_or_path, *inputs, **kwargs)
-    587     if tokenizer_class is None:
-    588         raise ValueError(
-    589             f"Tokenizer class {tokenizer_class_candidate} does not exist or is not currently imported."
-    590         )
+587     if tokenizer_class is None:
+588         raise ValueError(
+589             f"Tokenizer class {tokenizer_class_candidate} does not exist or is not currently imported."
+590         )
 --> 591     return tokenizer_class.from_pretrained(pretrained_model_name_or_path, *inputs, **kwargs)
-    593 # Otherwise we have to be creative.
-    594 # if model is an encoder decoder, the encoder tokenizer class is used by default
-    595 if isinstance(config, EncoderDecoderConfig):
-
+593 # Otherwise we have to be creative.
+594 # if model is an encoder decoder, the encoder tokenizer class is used by default
+595 if isinstance(config, EncoderDecoderConfig):
 
 File /Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/transformers/tokenization_utils_base.py:1805, in PreTrainedTokenizerBase.from_pretrained(cls, pretrained_model_name_or_path, *init_inputs, **kwargs)
-   1802     else:
-   1803         logger.info(f"loading file {file_path} from cache at {resolved_vocab_files[file_id]}")
+1802     else:
+1803         logger.info(f"loading file {file_path} from cache at {resolved_vocab_files[file_id]}")
 -> 1805 return cls._from_pretrained(
-   1806     resolved_vocab_files,
-   1807     pretrained_model_name_or_path,
-   1808     init_configuration,
-   1809     *init_inputs,
-   1810     use_auth_token=use_auth_token,
-   1811     cache_dir=cache_dir,
-   1812     **kwargs,
-   1813 )
-
+1806     resolved_vocab_files,
+1807     pretrained_model_name_or_path,
+1808     init_configuration,
+1809     *init_inputs,
+1810     use_auth_token=use_auth_token,
+1811     cache_dir=cache_dir,
+1812     **kwargs,
+1813 )
 
 File /Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/transformers/tokenization_utils_base.py:1950, in PreTrainedTokenizerBase._from_pretrained(cls, resolved_vocab_files, pretrained_model_name_or_path, init_configuration, use_auth_token, cache_dir, *init_inputs, **kwargs)
-   1948 # Instantiate tokenizer.
-   1949 try:
+1948 # Instantiate tokenizer.
+1949 try:
 -> 1950     tokenizer = cls(*init_inputs, **init_kwargs)
-   1951 except OSError:
-   1952     raise OSError(
-   1953         "Unable to load vocabulary from file. "
-   1954         "Please check that the provided vocabulary is accessible and not corrupted."
-   1955     )
-
+1951 except OSError:
+1952     raise OSError(
+1953         "Unable to load vocabulary from file. "
+1954         "Please check that the provided vocabulary is accessible and not corrupted."
+1955     )
 
 File /Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/transformers/models/xlm_roberta/tokenization_xlm_roberta_fast.py:155, in XLMRobertaTokenizerFast.__init__(self, vocab_file, tokenizer_file, bos_token, eos_token, sep_token, cls_token, unk_token, pad_token, mask_token, **kwargs)
-    139 def __init__(
-    140     self,
-    141     vocab_file=None,
-   (...)
-    151 ):
-    152     # Mask token behave like a normal word, i.e. include the space before it
-    153     mask_token = AddedToken(mask_token, lstrip=True, rstrip=False) if isinstance(mask_token, str) else mask_token
+139 def __init__(
+140     self,
+141     vocab_file=None,
+(...)
+151 ):
+152     # Mask token behave like a normal word, i.e. include the space before it
+153     mask_token = AddedToken(mask_token, lstrip=True, rstrip=False) if isinstance(mask_token, str) else mask_token
 --> 155     super().__init__(
-    156         vocab_file,
-    157         tokenizer_file=tokenizer_file,
-    158         bos_token=bos_token,
-    159         eos_token=eos_token,
-    160         sep_token=sep_token,
-    161         cls_token=cls_token,
-    162         unk_token=unk_token,
-    163         pad_token=pad_token,
-    164         mask_token=mask_token,
-    165         **kwargs,
-    166     )
-    168     self.vocab_file = vocab_file
-    169     self.can_save_slow_tokenizer = False if not self.vocab_file else True
-
+156         vocab_file,
+157         tokenizer_file=tokenizer_file,
+158         bos_token=bos_token,
+159         eos_token=eos_token,
+160         sep_token=sep_token,
+161         cls_token=cls_token,
+162         unk_token=unk_token,
+163         pad_token=pad_token,
+164         mask_token=mask_token,
+165         **kwargs,
+166     )
+168     self.vocab_file = vocab_file
+169     self.can_save_slow_tokenizer = False if not self.vocab_file else True
 
 File /Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/transformers/tokenization_utils_fast.py:110, in PreTrainedTokenizerFast.__init__(self, *args, **kwargs)
-    107     fast_tokenizer = tokenizer_object
-    108 elif fast_tokenizer_file is not None and not from_slow:
-    109     # We have a serialization from tokenizers which let us directly build the backend
+107     fast_tokenizer = tokenizer_object
+108 elif fast_tokenizer_file is not None and not from_slow:
+109     # We have a serialization from tokenizers which let us directly build the backend
 --> 110     fast_tokenizer = TokenizerFast.from_file(fast_tokenizer_file)
-    111 elif slow_tokenizer is not None:
-    112     # We need to convert a slow tokenizer to build the backend
-    113     fast_tokenizer = convert_slow_tokenizer(slow_tokenizer)
-
+111 elif slow_tokenizer is not None:
+112     # We need to convert a slow tokenizer to build the backend
+113     fast_tokenizer = convert_slow_tokenizer(slow_tokenizer)
 
 Exception: data did not match any variant of untagged enum PyPreTokenizerTypeWrapper at line 78 column 3
+
 ```python
 Tweet_auto = pd.read_csv('Tweet_auto.csv',index_col=0)
 Tweet_auto.head()
 ```
+
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -3349,13 +3084,14 @@ Tweet_auto.head()
     }
 
 .dataframe tbody tr th {
-    vertical-align: top;
+vertical-align: top;
 }
 
 .dataframe thead th {
-    text-align: right;
+text-align: right;
 }
 </style>
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -3430,373 +3166,340 @@ model = tweetnlp.load_model('sentiment')
 tweetnlp_sentiments = Tweet['cleaned_body'].progress_apply(lambda x: pd.Series(model.sentiment(x, return_probability=True)))
 tweetnlp_sentiments.head()
 ```
+
 Some weights of the model checkpoint at cardiffnlp/twitter-roberta-base-sentiment-latest were not used when initializing RobertaForSequenceClassification: ['roberta.pooler.dense.weight', 'roberta.pooler.dense.bias']
+
 - This IS expected if you are initializing RobertaForSequenceClassification from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
 - This IS NOT expected if you are initializing RobertaForSequenceClassification from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
   0%|          | 912/4336445 [00:14<18:46:45, 64.13it/s]
 
-
-
----------------------------------------------------------------------------
+---
 
 KeyboardInterrupt                         Traceback (most recent call last)
 
 Cell In[21], line 4
-      1 import tweetnlp
-      3 model = tweetnlp.load_model('sentiment')
+1 import tweetnlp
+3 model = tweetnlp.load_model('sentiment')
 ----> 4 tweetnlp_sentiments = Tweet['cleaned_body'].progress_apply(lambda x: pd.Series(model.sentiment(x, return_probability=True)))
-      5 tweetnlp_sentiments.head()
-
+5 tweetnlp_sentiments.head()
 
 File /Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/tqdm/std.py:920, in tqdm.pandas.<locals>.inner_generator.<locals>.inner(df, func, *args, **kwargs)
-    917 # Apply the provided function (in **kwargs)
-    918 # on the df using our wrapper (which provides bar updating)
-    919 try:
+917 # Apply the provided function (in **kwargs)
+918 # on the df using our wrapper (which provides bar updating)
+919 try:
 --> 920     return getattr(df, df_function)(wrapper, **kwargs)
-    921 finally:
-    922     t.close()
-
+921 finally:
+922     t.close()
 
 File /Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/pandas/core/series.py:4753, in Series.apply(self, func, convert_dtype, args, by_row, **kwargs)
-   4625 def apply(
-   4626     self,
-   4627     func: AggFuncType,
-   (...)
-   4632     **kwargs,
-   4633 ) -> DataFrame | Series:
-   4634     """
-   4635     Invoke function on values of Series.
-   4636 
-   (...)
-   4751     dtype: float64
-   4752     """
+4625 def apply(
+4626     self,
+4627     func: AggFuncType,
+(...)
+4632     **kwargs,
+4633 ) -> DataFrame | Series:
+4634     """
+4635     Invoke function on values of Series.
+4636
+(...)
+4751     dtype: float64
+4752     """
 -> 4753     return SeriesApply(
-   4754         self,
-   4755         func,
-   4756         convert_dtype=convert_dtype,
-   4757         by_row=by_row,
-   4758         args=args,
-   4759         kwargs=kwargs,
-   4760     ).apply()
-
+4754         self,
+4755         func,
+4756         convert_dtype=convert_dtype,
+4757         by_row=by_row,
+4758         args=args,
+4759         kwargs=kwargs,
+4760     ).apply()
 
 File /Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/pandas/core/apply.py:1207, in SeriesApply.apply(self)
-   1204     return self.apply_compat()
-   1206 # self.func is Callable
+1204     return self.apply_compat()
+1206 # self.func is Callable
 -> 1207 return self.apply_standard()
 
-
 File /Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/pandas/core/apply.py:1287, in SeriesApply.apply_standard(self)
-   1281 # row-wise access
-   1282 # apply doesn't have a `na_action` keyword and for backward compat reasons
-   1283 # we need to give `na_action="ignore"` for categorical data.
-   1284 # TODO: remove the `na_action="ignore"` when that default has been changed in
-   1285 #  Categorical (GH51645).
-   1286 action = "ignore" if isinstance(obj.dtype, CategoricalDtype) else None
+1281 # row-wise access
+1282 # apply doesn't have a `na_action` keyword and for backward compat reasons
+1283 # we need to give `na_action="ignore"` for categorical data.
+1284 # TODO: remove the `na_action="ignore"` when that default has been changed in
+1285 #  Categorical (GH51645).
+1286 action = "ignore" if isinstance(obj.dtype, CategoricalDtype) else None
 -> 1287 mapped = obj._map_values(
-   1288     mapper=curried, na_action=action, convert=self.convert_dtype
-   1289 )
-   1291 if len(mapped) and isinstance(mapped[0], ABCSeries):
-   1292     # GH#43986 Need to do list(mapped) in order to get treated as nested
-   1293     #  See also GH#25959 regarding EA support
-   1294     return obj._constructor_expanddim(list(mapped), index=obj.index)
-
+1288     mapper=curried, na_action=action, convert=self.convert_dtype
+1289 )
+1291 if len(mapped) and isinstance(mapped[0], ABCSeries):
+1292     # GH#43986 Need to do list(mapped) in order to get treated as nested
+1293     #  See also GH#25959 regarding EA support
+1294     return obj._constructor_expanddim(list(mapped), index=obj.index)
 
 File /Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/pandas/core/base.py:921, in IndexOpsMixin._map_values(self, mapper, na_action, convert)
-    918 if isinstance(arr, ExtensionArray):
-    919     return arr.map(mapper, na_action=na_action)
+918 if isinstance(arr, ExtensionArray):
+919     return arr.map(mapper, na_action=na_action)
 --> 921 return algorithms.map_array(arr, mapper, na_action=na_action, convert=convert)
 
-
 File /Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/pandas/core/algorithms.py:1814, in map_array(arr, mapper, na_action, convert)
-   1812 values = arr.astype(object, copy=False)
-   1813 if na_action is None:
+1812 values = arr.astype(object, copy=False)
+1813 if na_action is None:
 -> 1814     return lib.map_infer(values, mapper, convert=convert)
-   1815 else:
-   1816     return lib.map_infer_mask(
-   1817         values, mapper, mask=isna(values).view(np.uint8), convert=convert
-   1818     )
-
+1815 else:
+1816     return lib.map_infer_mask(
+1817         values, mapper, mask=isna(values).view(np.uint8), convert=convert
+1818     )
 
 File lib.pyx:2920, in pandas._libs.lib.map_infer()
 
-
 File /Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/tqdm/std.py:915, in tqdm.pandas.<locals>.inner_generator.<locals>.inner.<locals>.wrapper(*args, **kwargs)
-    909 def wrapper(*args, **kwargs):
-    910     # update tbar correctly
-    911     # it seems `pandas apply` calls `func` twice
-    912     # on the first column/row to decide whether it can
-    913     # take a fast or slow code path; so stop when t.total==t.n
-    914     t.update(n=1 if not t.total or t.n < t.total else 0)
+909 def wrapper(*args, **kwargs):
+910     # update tbar correctly
+911     # it seems `pandas apply` calls `func` twice
+912     # on the first column/row to decide whether it can
+913     # take a fast or slow code path; so stop when t.total==t.n
+914     t.update(n=1 if not t.total or t.n < t.total else 0)
 --> 915     return func(*args, **kwargs)
 
-
 Cell In[21], line 4, in <lambda>(x)
-      1 import tweetnlp
-      3 model = tweetnlp.load_model('sentiment')
+1 import tweetnlp
+3 model = tweetnlp.load_model('sentiment')
 ----> 4 tweetnlp_sentiments = Tweet['cleaned_body'].progress_apply(lambda x: pd.Series(model.sentiment(x, return_probability=True)))
-      5 tweetnlp_sentiments.head()
-
+5 tweetnlp_sentiments.head()
 
 File /Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/tweetnlp/text_classification/model.py:113, in Classifier.predict(self, text, batch_size, return_probability, skip_preprocess)
-    106 for i in range(len(_index) - 1):
-    107     encoded_input = self.tokenizer.batch_encode_plus(
-    108         text[_index[i]: _index[i+1]],
-    109         max_length=self.max_length,
-    110         return_tensors='pt',
-    111         padding=True,
-    112         truncation=True)
+106 for i in range(len(_index) - 1):
+107     encoded_input = self.tokenizer.batch_encode_plus(
+108         text[_index[i]: _index[i+1]],
+109         max_length=self.max_length,
+110         return_tensors='pt',
+111         padding=True,
+112         truncation=True)
 --> 113     output = self.model(**{k: v.to(self.device) for k, v in encoded_input.items()})
-    114     if self.multi_label:
-    115         probs += torch.sigmoid(output.logits).cpu().tolist()
-
+114     if self.multi_label:
+115         probs += torch.sigmoid(output.logits).cpu().tolist()
 
 File /Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/torch/nn/modules/module.py:1511, in Module._wrapped_call_impl(self, *args, **kwargs)
-   1509     return self._compiled_call_impl(*args, **kwargs)  # type: ignore[misc]
-   1510 else:
+1509     return self._compiled_call_impl(*args, **kwargs)  # type: ignore[misc]
+1510 else:
 -> 1511     return self._call_impl(*args, **kwargs)
 
-
 File /Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/torch/nn/modules/module.py:1520, in Module._call_impl(self, *args, **kwargs)
-   1515 # If we don't have any hooks, we want to skip the rest of the logic in
-   1516 # this function, and just call forward.
-   1517 if not (self._backward_hooks or self._backward_pre_hooks or self._forward_hooks or self._forward_pre_hooks
-   1518         or _global_backward_pre_hooks or _global_backward_hooks
-   1519         or _global_forward_hooks or _global_forward_pre_hooks):
+1515 # If we don't have any hooks, we want to skip the rest of the logic in
+1516 # this function, and just call forward.
+1517 if not (self._backward_hooks or self._backward_pre_hooks or self._forward_hooks or self._forward_pre_hooks
+1518         or _global_backward_pre_hooks or _global_backward_hooks
+1519         or _global_forward_hooks or _global_forward_pre_hooks):
 -> 1520     return forward_call(*args, **kwargs)
-   1522 try:
-   1523     result = None
-
+1522 try:
+1523     result = None
 
 File /Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/transformers/models/roberta/modeling_roberta.py:1206, in RobertaForSequenceClassification.forward(self, input_ids, attention_mask, token_type_ids, position_ids, head_mask, inputs_embeds, labels, output_attentions, output_hidden_states, return_dict)
-   1198 r"""
-   1199 labels (`torch.LongTensor` of shape `(batch_size,)`, *optional*):
-   1200     Labels for computing the sequence classification/regression loss. Indices should be in `[0, ...,
-   1201     config.num_labels - 1]`. If `config.num_labels == 1` a regression loss is computed (Mean-Square loss), If
-   1202     `config.num_labels > 1` a classification loss is computed (Cross-Entropy).
-   1203 """
-   1204 return_dict = return_dict if return_dict is not None else self.config.use_return_dict
+1198 r"""
+1199 labels (`torch.LongTensor` of shape `(batch_size,)`, *optional*):
+1200     Labels for computing the sequence classification/regression loss. Indices should be in `[0, ..., 1201     config.num_labels - 1]`. If `config.num_labels == 1` a regression loss is computed (Mean-Square loss), If
+1202     `config.num_labels > 1` a classification loss is computed (Cross-Entropy).
+1203 """
+1204 return_dict = return_dict if return_dict is not None else self.config.use_return_dict
 -> 1206 outputs = self.roberta(
-   1207     input_ids,
-   1208     attention_mask=attention_mask,
-   1209     token_type_ids=token_type_ids,
-   1210     position_ids=position_ids,
-   1211     head_mask=head_mask,
-   1212     inputs_embeds=inputs_embeds,
-   1213     output_attentions=output_attentions,
-   1214     output_hidden_states=output_hidden_states,
-   1215     return_dict=return_dict,
-   1216 )
-   1217 sequence_output = outputs[0]
-   1218 logits = self.classifier(sequence_output)
-
+1207     input_ids,
+1208     attention_mask=attention_mask,
+1209     token_type_ids=token_type_ids,
+1210     position_ids=position_ids,
+1211     head_mask=head_mask,
+1212     inputs_embeds=inputs_embeds,
+1213     output_attentions=output_attentions,
+1214     output_hidden_states=output_hidden_states,
+1215     return_dict=return_dict,
+1216 )
+1217 sequence_output = outputs[0]
+1218 logits = self.classifier(sequence_output)
 
 File /Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/torch/nn/modules/module.py:1511, in Module._wrapped_call_impl(self, *args, **kwargs)
-   1509     return self._compiled_call_impl(*args, **kwargs)  # type: ignore[misc]
-   1510 else:
+1509     return self._compiled_call_impl(*args, **kwargs)  # type: ignore[misc]
+1510 else:
 -> 1511     return self._call_impl(*args, **kwargs)
 
-
 File /Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/torch/nn/modules/module.py:1520, in Module._call_impl(self, *args, **kwargs)
-   1515 # If we don't have any hooks, we want to skip the rest of the logic in
-   1516 # this function, and just call forward.
-   1517 if not (self._backward_hooks or self._backward_pre_hooks or self._forward_hooks or self._forward_pre_hooks
-   1518         or _global_backward_pre_hooks or _global_backward_hooks
-   1519         or _global_forward_hooks or _global_forward_pre_hooks):
+1515 # If we don't have any hooks, we want to skip the rest of the logic in
+1516 # this function, and just call forward.
+1517 if not (self._backward_hooks or self._backward_pre_hooks or self._forward_hooks or self._forward_pre_hooks
+1518         or _global_backward_pre_hooks or _global_backward_hooks
+1519         or _global_forward_hooks or _global_forward_pre_hooks):
 -> 1520     return forward_call(*args, **kwargs)
-   1522 try:
-   1523     result = None
-
+1522 try:
+1523     result = None
 
 File /Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/transformers/models/roberta/modeling_roberta.py:848, in RobertaModel.forward(self, input_ids, attention_mask, token_type_ids, position_ids, head_mask, inputs_embeds, encoder_hidden_states, encoder_attention_mask, past_key_values, use_cache, output_attentions, output_hidden_states, return_dict)
-    839 head_mask = self.get_head_mask(head_mask, self.config.num_hidden_layers)
-    841 embedding_output = self.embeddings(
-    842     input_ids=input_ids,
-    843     position_ids=position_ids,
-   (...)
-    846     past_key_values_length=past_key_values_length,
-    847 )
+839 head_mask = self.get_head_mask(head_mask, self.config.num_hidden_layers)
+841 embedding_output = self.embeddings(
+842     input_ids=input_ids,
+843     position_ids=position_ids,
+(...)
+846     past_key_values_length=past_key_values_length,
+847 )
 --> 848 encoder_outputs = self.encoder(
-    849     embedding_output,
-    850     attention_mask=extended_attention_mask,
-    851     head_mask=head_mask,
-    852     encoder_hidden_states=encoder_hidden_states,
-    853     encoder_attention_mask=encoder_extended_attention_mask,
-    854     past_key_values=past_key_values,
-    855     use_cache=use_cache,
-    856     output_attentions=output_attentions,
-    857     output_hidden_states=output_hidden_states,
-    858     return_dict=return_dict,
-    859 )
-    860 sequence_output = encoder_outputs[0]
-    861 pooled_output = self.pooler(sequence_output) if self.pooler is not None else None
-
+849     embedding_output,
+850     attention_mask=extended_attention_mask,
+851     head_mask=head_mask,
+852     encoder_hidden_states=encoder_hidden_states,
+853     encoder_attention_mask=encoder_extended_attention_mask,
+854     past_key_values=past_key_values,
+855     use_cache=use_cache,
+856     output_attentions=output_attentions,
+857     output_hidden_states=output_hidden_states,
+858     return_dict=return_dict,
+859 )
+860 sequence_output = encoder_outputs[0]
+861 pooled_output = self.pooler(sequence_output) if self.pooler is not None else None
 
 File /Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/torch/nn/modules/module.py:1511, in Module._wrapped_call_impl(self, *args, **kwargs)
-   1509     return self._compiled_call_impl(*args, **kwargs)  # type: ignore[misc]
-   1510 else:
+1509     return self._compiled_call_impl(*args, **kwargs)  # type: ignore[misc]
+1510 else:
 -> 1511     return self._call_impl(*args, **kwargs)
 
-
 File /Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/torch/nn/modules/module.py:1520, in Module._call_impl(self, *args, **kwargs)
-   1515 # If we don't have any hooks, we want to skip the rest of the logic in
-   1516 # this function, and just call forward.
-   1517 if not (self._backward_hooks or self._backward_pre_hooks or self._forward_hooks or self._forward_pre_hooks
-   1518         or _global_backward_pre_hooks or _global_backward_hooks
-   1519         or _global_forward_hooks or _global_forward_pre_hooks):
+1515 # If we don't have any hooks, we want to skip the rest of the logic in
+1516 # this function, and just call forward.
+1517 if not (self._backward_hooks or self._backward_pre_hooks or self._forward_hooks or self._forward_pre_hooks
+1518         or _global_backward_pre_hooks or _global_backward_hooks
+1519         or _global_forward_hooks or _global_forward_pre_hooks):
 -> 1520     return forward_call(*args, **kwargs)
-   1522 try:
-   1523     result = None
-
+1522 try:
+1523     result = None
 
 File /Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/transformers/models/roberta/modeling_roberta.py:524, in RobertaEncoder.forward(self, hidden_states, attention_mask, head_mask, encoder_hidden_states, encoder_attention_mask, past_key_values, use_cache, output_attentions, output_hidden_states, return_dict)
-    515     layer_outputs = torch.utils.checkpoint.checkpoint(
-    516         create_custom_forward(layer_module),
-    517         hidden_states,
-   (...)
-    521         encoder_attention_mask,
-    522     )
-    523 else:
+515     layer_outputs = torch.utils.checkpoint.checkpoint(
+516         create_custom_forward(layer_module),
+517         hidden_states,
+(...)
+521         encoder_attention_mask,
+522     )
+523 else:
 --> 524     layer_outputs = layer_module(
-    525         hidden_states,
-    526         attention_mask,
-    527         layer_head_mask,
-    528         encoder_hidden_states,
-    529         encoder_attention_mask,
-    530         past_key_value,
-    531         output_attentions,
-    532     )
-    534 hidden_states = layer_outputs[0]
-    535 if use_cache:
-
+525         hidden_states,
+526         attention_mask,
+527         layer_head_mask,
+528         encoder_hidden_states,
+529         encoder_attention_mask,
+530         past_key_value,
+531         output_attentions,
+532     )
+534 hidden_states = layer_outputs[0]
+535 if use_cache:
 
 File /Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/torch/nn/modules/module.py:1511, in Module._wrapped_call_impl(self, *args, **kwargs)
-   1509     return self._compiled_call_impl(*args, **kwargs)  # type: ignore[misc]
-   1510 else:
+1509     return self._compiled_call_impl(*args, **kwargs)  # type: ignore[misc]
+1510 else:
 -> 1511     return self._call_impl(*args, **kwargs)
 
-
 File /Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/torch/nn/modules/module.py:1520, in Module._call_impl(self, *args, **kwargs)
-   1515 # If we don't have any hooks, we want to skip the rest of the logic in
-   1516 # this function, and just call forward.
-   1517 if not (self._backward_hooks or self._backward_pre_hooks or self._forward_hooks or self._forward_pre_hooks
-   1518         or _global_backward_pre_hooks or _global_backward_hooks
-   1519         or _global_forward_hooks or _global_forward_pre_hooks):
+1515 # If we don't have any hooks, we want to skip the rest of the logic in
+1516 # this function, and just call forward.
+1517 if not (self._backward_hooks or self._backward_pre_hooks or self._forward_hooks or self._forward_pre_hooks
+1518         or _global_backward_pre_hooks or _global_backward_hooks
+1519         or _global_forward_hooks or _global_forward_pre_hooks):
 -> 1520     return forward_call(*args, **kwargs)
-   1522 try:
-   1523     result = None
-
+1522 try:
+1523     result = None
 
 File /Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/transformers/models/roberta/modeling_roberta.py:409, in RobertaLayer.forward(self, hidden_states, attention_mask, head_mask, encoder_hidden_states, encoder_attention_mask, past_key_value, output_attentions)
-    397 def forward(
-    398     self,
-    399     hidden_states: torch.Tensor,
-   (...)
-    406 ) -> Tuple[torch.Tensor]:
-    407     # decoder uni-directional self-attention cached key/values tuple is at positions 1,2
-    408     self_attn_past_key_value = past_key_value[:2] if past_key_value is not None else None
+397 def forward(
+398     self,
+399     hidden_states: torch.Tensor,
+(...)
+406 ) -> Tuple[torch.Tensor]:
+407     # decoder uni-directional self-attention cached key/values tuple is at positions 1,2
+408     self_attn_past_key_value = past_key_value[:2] if past_key_value is not None else None
 --> 409     self_attention_outputs = self.attention(
-    410         hidden_states,
-    411         attention_mask,
-    412         head_mask,
-    413         output_attentions=output_attentions,
-    414         past_key_value=self_attn_past_key_value,
-    415     )
-    416     attention_output = self_attention_outputs[0]
-    418     # if decoder, the last output is tuple of self-attn cache
-
+410         hidden_states,
+411         attention_mask,
+412         head_mask,
+413         output_attentions=output_attentions,
+414         past_key_value=self_attn_past_key_value,
+415     )
+416     attention_output = self_attention_outputs[0]
+418     # if decoder, the last output is tuple of self-attn cache
 
 File /Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/torch/nn/modules/module.py:1511, in Module._wrapped_call_impl(self, *args, **kwargs)
-   1509     return self._compiled_call_impl(*args, **kwargs)  # type: ignore[misc]
-   1510 else:
+1509     return self._compiled_call_impl(*args, **kwargs)  # type: ignore[misc]
+1510 else:
 -> 1511     return self._call_impl(*args, **kwargs)
 
-
 File /Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/torch/nn/modules/module.py:1520, in Module._call_impl(self, *args, **kwargs)
-   1515 # If we don't have any hooks, we want to skip the rest of the logic in
-   1516 # this function, and just call forward.
-   1517 if not (self._backward_hooks or self._backward_pre_hooks or self._forward_hooks or self._forward_pre_hooks
-   1518         or _global_backward_pre_hooks or _global_backward_hooks
-   1519         or _global_forward_hooks or _global_forward_pre_hooks):
+1515 # If we don't have any hooks, we want to skip the rest of the logic in
+1516 # this function, and just call forward.
+1517 if not (self._backward_hooks or self._backward_pre_hooks or self._forward_hooks or self._forward_pre_hooks
+1518         or _global_backward_pre_hooks or _global_backward_hooks
+1519         or _global_forward_hooks or _global_forward_pre_hooks):
 -> 1520     return forward_call(*args, **kwargs)
-   1522 try:
-   1523     result = None
-
+1522 try:
+1523     result = None
 
 File /Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/transformers/models/roberta/modeling_roberta.py:345, in RobertaAttention.forward(self, hidden_states, attention_mask, head_mask, encoder_hidden_states, encoder_attention_mask, past_key_value, output_attentions)
-    326 def forward(
-    327     self,
-    328     hidden_states: torch.Tensor,
-   (...)
-    334     output_attentions: Optional[bool] = False,
-    335 ) -> Tuple[torch.Tensor]:
-    336     self_outputs = self.self(
-    337         hidden_states,
-    338         attention_mask,
-   (...)
-    343         output_attentions,
-    344     )
+326 def forward(
+327     self,
+328     hidden_states: torch.Tensor,
+(...)
+334     output_attentions: Optional[bool] = False,
+335 ) -> Tuple[torch.Tensor]:
+336     self_outputs = self.self(
+337         hidden_states,
+338         attention_mask,
+(...)
+343         output_attentions,
+344     )
 --> 345     attention_output = self.output(self_outputs[0], hidden_states)
-    346     outputs = (attention_output,) + self_outputs[1:]  # add attentions if we output them
-    347     return outputs
-
+346     outputs = (attention_output,) + self_outputs[1:]  # add attentions if we output them
+347     return outputs
 
 File /Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/torch/nn/modules/module.py:1511, in Module._wrapped_call_impl(self, *args, **kwargs)
-   1509     return self._compiled_call_impl(*args, **kwargs)  # type: ignore[misc]
-   1510 else:
+1509     return self._compiled_call_impl(*args, **kwargs)  # type: ignore[misc]
+1510 else:
 -> 1511     return self._call_impl(*args, **kwargs)
 
-
 File /Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/torch/nn/modules/module.py:1520, in Module._call_impl(self, *args, **kwargs)
-   1515 # If we don't have any hooks, we want to skip the rest of the logic in
-   1516 # this function, and just call forward.
-   1517 if not (self._backward_hooks or self._backward_pre_hooks or self._forward_hooks or self._forward_pre_hooks
-   1518         or _global_backward_pre_hooks or _global_backward_hooks
-   1519         or _global_forward_hooks or _global_forward_pre_hooks):
+1515 # If we don't have any hooks, we want to skip the rest of the logic in
+1516 # this function, and just call forward.
+1517 if not (self._backward_hooks or self._backward_pre_hooks or self._forward_hooks or self._forward_pre_hooks
+1518         or _global_backward_pre_hooks or _global_backward_hooks
+1519         or _global_forward_hooks or _global_forward_pre_hooks):
 -> 1520     return forward_call(*args, **kwargs)
-   1522 try:
-   1523     result = None
-
+1522 try:
+1523     result = None
 
 File /Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/transformers/models/roberta/modeling_roberta.py:296, in RobertaSelfOutput.forward(self, hidden_states, input_tensor)
-    294 hidden_states = self.dense(hidden_states)
-    295 hidden_states = self.dropout(hidden_states)
+294 hidden_states = self.dense(hidden_states)
+295 hidden_states = self.dropout(hidden_states)
 --> 296 hidden_states = self.LayerNorm(hidden_states + input_tensor)
-    297 return hidden_states
-
+297 return hidden_states
 
 File /Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/torch/nn/modules/module.py:1511, in Module._wrapped_call_impl(self, *args, **kwargs)
-   1509     return self._compiled_call_impl(*args, **kwargs)  # type: ignore[misc]
-   1510 else:
+1509     return self._compiled_call_impl(*args, **kwargs)  # type: ignore[misc]
+1510 else:
 -> 1511     return self._call_impl(*args, **kwargs)
 
-
 File /Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/torch/nn/modules/module.py:1520, in Module._call_impl(self, *args, **kwargs)
-   1515 # If we don't have any hooks, we want to skip the rest of the logic in
-   1516 # this function, and just call forward.
-   1517 if not (self._backward_hooks or self._backward_pre_hooks or self._forward_hooks or self._forward_pre_hooks
-   1518         or _global_backward_pre_hooks or _global_backward_hooks
-   1519         or _global_forward_hooks or _global_forward_pre_hooks):
+1515 # If we don't have any hooks, we want to skip the rest of the logic in
+1516 # this function, and just call forward.
+1517 if not (self._backward_hooks or self._backward_pre_hooks or self._forward_hooks or self._forward_pre_hooks
+1518         or _global_backward_pre_hooks or _global_backward_hooks
+1519         or _global_forward_hooks or _global_forward_pre_hooks):
 -> 1520     return forward_call(*args, **kwargs)
-   1522 try:
-   1523     result = None
-
+1522 try:
+1523     result = None
 
 File /Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/torch/nn/modules/normalization.py:201, in LayerNorm.forward(self, input)
-    200 def forward(self, input: Tensor) -> Tensor:
+200 def forward(self, input: Tensor) -> Tensor:
 --> 201     return F.layer_norm(
-    202         input, self.normalized_shape, self.weight, self.bias, self.eps)
-
+202         input, self.normalized_shape, self.weight, self.bias, self.eps)
 
 File /Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/torch/nn/functional.py:2546, in layer_norm(input, normalized_shape, weight, bias, eps)
-   2542 if has_torch_function_variadic(input, weight, bias):
-   2543     return handle_torch_function(
-   2544         layer_norm, (input, weight, bias), input, normalized_shape, weight=weight, bias=bias, eps=eps
-   2545     )
+2542 if has_torch_function_variadic(input, weight, bias):
+2543     return handle_torch_function(
+2544         layer_norm, (input, weight, bias), input, normalized_shape, weight=weight, bias=bias, eps=eps
+2545     )
 -> 2546 return torch.layer_norm(input, normalized_shape, weight, bias, eps, torch.backends.cudnn.enabled)
 
+KeyboardInterrupt:
 
-KeyboardInterrupt: 
 ```python
 Tweet = pd.read_csv('Tweet_after_cleaned.csv',index_col=0)
 sneti_tweetnlp = pd.read_csv('sneti_tweetnlp.csv',index_col=0).reset_index()
@@ -3812,6 +3515,7 @@ sneti_tweetnlp_mean = df.groupby(['date', 'ticker_symbol'])['final_score'].mean(
 sneti_tweetnlp_mean.columns = ['date','ticker_symbol','polarity']
 sneti_tweetnlp_mean
 ```
+
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -3819,13 +3523,14 @@ sneti_tweetnlp_mean
     }
 
 .dataframe tbody tr th {
-    vertical-align: top;
+vertical-align: top;
 }
 
 .dataframe thead th {
-    text-align: right;
+text-align: right;
 }
 </style>
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -3912,6 +3617,7 @@ sneti_tweetnlp_mean
 ```python
 display('senti_textblob_mean.head()','senti_vader_mean.head()','sneti_tweetnlp_mean.head()')
 ```
+
 <div style="float: left; padding: 10px;">
     <p style='font-family:"Courier New", Courier, monospace'>senti_textblob_mean.head()</p><div>
 <style scoped>
@@ -3920,13 +3626,14 @@ display('senti_textblob_mean.head()','senti_vader_mean.head()','sneti_tweetnlp_m
     }
 
 .dataframe tbody tr th {
-    vertical-align: top;
+vertical-align: top;
 }
 
 .dataframe thead th {
-    text-align: right;
+text-align: right;
 }
 </style>
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -3980,137 +3687,13 @@ display('senti_textblob_mean.head()','senti_vader_mean.head()','sneti_tweetnlp_m
 
 
   
-
-```python
-sentiment_df = pd.concat([senti_textblob_mean,senti_vader_mean['polarity'],sneti_tweetnlp_mean['polarity']],axis=1,)
-sentiment_df.columns = ['date','ticker_symbol','textblob_polarity','vader_polarity','tweetnlp_polarity']
-sentiment_df
-```
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-.dataframe tbody tr th {
-    vertical-align: top;
-}
-
-.dataframe thead th {
-    text-align: right;
-}
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>date</th>
-      <th>ticker_symbol</th>
-      <th>textblob_polarity</th>
-      <th>vader_polarity</th>
-      <th>tweetnlp_polarity</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>2015-01-01</td>
-      <td>AAPL</td>
-      <td>0.735</td>
-      <td>1.580</td>
-      <td>-0.164</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2015-01-01</td>
-      <td>AMZN</td>
-      <td>-0.754</td>
-      <td>-1.474</td>
-      <td>-3.557</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>2015-01-01</td>
-      <td>GOOG</td>
-      <td>0.310</td>
-      <td>0.456</td>
-      <td>0.250</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>2015-01-01</td>
-      <td>GOOGL</td>
-      <td>0.254</td>
-      <td>0.329</td>
-      <td>0.044</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>2015-01-01</td>
-      <td>MSFT</td>
-      <td>0.071</td>
-      <td>0.425</td>
-      <td>-0.148</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>10943</th>
-      <td>2019-12-31</td>
-      <td>AMZN</td>
-      <td>0.358</td>
-      <td>0.724</td>
-      <td>0.120</td>
-    </tr>
-    <tr>
-      <th>10944</th>
-      <td>2019-12-31</td>
-      <td>GOOG</td>
-      <td>0.182</td>
-      <td>0.295</td>
-      <td>-0.246</td>
-    </tr>
-    <tr>
-      <th>10945</th>
-      <td>2019-12-31</td>
-      <td>GOOGL</td>
-      <td>0.242</td>
-      <td>0.382</td>
-      <td>-0.167</td>
-    </tr>
-    <tr>
-      <th>10946</th>
-      <td>2019-12-31</td>
-      <td>MSFT</td>
-      <td>0.692</td>
-      <td>2.049</td>
-      <td>2.087</td>
-    </tr>
-    <tr>
-      <th>10947</th>
-      <td>2019-12-31</td>
-      <td>TSLA</td>
-      <td>1.231</td>
-      <td>2.360</td>
-      <td>-0.195</td>
-    </tr>
-  </tbody>
-</table>
-<p>10948 rows × 5 columns</p>
-</div>
-
 ### 6.2.7. merge to stock_df
 
 ```python
 stock_data = pd.read_csv('stock_data.csv',index_col=0)
 stock_data.head()
 ```
+
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -4118,13 +3701,14 @@ stock_data.head()
     }
 
 .dataframe tbody tr th {
-    vertical-align: top;
+vertical-align: top;
 }
 
 .dataframe thead th {
-    text-align: right;
+text-align: right;
 }
 </style>
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -4243,6 +3827,7 @@ stock_data_senti = pd.merge(stock_data, sentiment_df, on=['date', 'ticker_symbol
 stock_data_senti['date'] = pd.to_datetime(stock_data_senti['date'])
 stock_data_senti
 ```
+
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -4250,13 +3835,14 @@ stock_data_senti
     }
 
 .dataframe tbody tr th {
-    vertical-align: top;
+vertical-align: top;
 }
 
 .dataframe thead th {
-    text-align: right;
+text-align: right;
 }
 </style>
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -4509,12 +4095,15 @@ stock_data_senti
 ```python
 stock_data_senti.isna().sum().sum()
 ```
+
 0
+
 ```python
 Tweet.to_csv('Tweet.csv')
 stock_data.to_csv('stock_data.csv')
 stock_data_senti.to_csv('stock_data_senti.csv')
 ```
+
 # 5. Model Training and Evaluation
 
 ### 5.1. Define Target Variable:
@@ -4530,7 +4119,9 @@ stock_data_senti = stock_data_senti.dropna()
 print("Stock Data with Target Variable:")
 stock_data_senti.head()
 ```
+
 Stock Data with Target Variable:
+
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -4538,13 +4129,14 @@ Stock Data with Target Variable:
     }
 
 .dataframe tbody tr th {
-    vertical-align: top;
+vertical-align: top;
 }
 
 .dataframe thead th {
-    text-align: right;
+text-align: right;
 }
 </style>
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -4708,8 +4300,10 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, shuffle
 print(f"X_train shape: {X_train.shape}, X_test shape: {X_test.shape}")
 print(f"y_train shape: {y_train.shape}, y_test shape: {y_test.shape}")
 ```
+
 X_train shape: (5280, 6), X_test shape: (2264, 6)
 y_train shape: (5280,), y_test shape: (2264,)
+
 ### 5.3. Model Training and Evaluation:
 
 ```python
@@ -4764,21 +4358,21 @@ performance_without_twitter = {
 print(f"Logistic Regression - Precision: {logistic_precision}, Recall: {logistic_recall}, F1 Score: {logistic_f1}")
 print(f"Random Forest - Precision: {rf_precision}, Recall: {rf_recall}, F1 Score: {rf_f1}")
 ```
-XGBoost - Precision: 0.49273743016759775, Recall: 0.40682656826568264, F1 Score: 0.4456796361798888
 
+XGBoost - Precision: 0.49273743016759775, Recall: 0.40682656826568264, F1 Score: 0.4456796361798888
 
 /Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/sklearn/linear_model/_logistic.py:469: ConvergenceWarning: lbfgs failed to converge (status=1):
 STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
 
 Increase the number of iterations (max_iter) or scale the data as shown in:
-    https://scikit-learn.org/stable/modules/preprocessing.html
+https://scikit-learn.org/stable/modules/preprocessing.html
 Please also refer to the documentation for alternative solver options:
-    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
-  n_iter_i = _check_optimize_result(
-
+https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+n_iter_i = _check_optimize_result(
 
 Logistic Regression - Precision: 0.6980552712384852, Recall: 0.6291512915129152, F1 Score: 0.6618146530810286
 Random Forest - Precision: 0.48320158102766797, Recall: 0.4511070110701107, F1 Score: 0.4666030534351145
+
 ### 5.4. Code for Combining Features
 
 ### 5.6. Code for Splitting the Data
@@ -4798,8 +4392,10 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, shuffle
 print(f"X_train shape: {X_train.shape}, X_test shape: {X_test.shape}")
 print(f"y_train shape: {y_train.shape}, y_test shape: {y_test.shape}")
 ```
+
 X_train shape: (5280, 9), X_test shape: (2264, 9)
 y_train shape: (5280,), y_test shape: (2264,)
+
 ### 5.7. Model Training and Evaluation
 
 ```python
@@ -4854,21 +4450,21 @@ performance_with_twitter = {
 print(f"Logistic Regression - Precision: {logistic_precision}, Recall: {logistic_recall}, F1 Score: {logistic_f1}")
 print(f"Random Forest - Precision: {rf_precision}, Recall: {rf_recall}, F1 Score: {rf_f1}")
 ```
-XGBoost - Precision: 0.5070821529745042, Recall: 0.49538745387453875, F1 Score: 0.5011665888940737
 
+XGBoost - Precision: 0.5070821529745042, Recall: 0.49538745387453875, F1 Score: 0.5011665888940737
 
 /Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/sklearn/linear_model/_logistic.py:469: ConvergenceWarning: lbfgs failed to converge (status=1):
 STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
 
 Increase the number of iterations (max_iter) or scale the data as shown in:
-    https://scikit-learn.org/stable/modules/preprocessing.html
+https://scikit-learn.org/stable/modules/preprocessing.html
 Please also refer to the documentation for alternative solver options:
-    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
-  n_iter_i = _check_optimize_result(
-
+https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+n_iter_i = _check_optimize_result(
 
 Logistic Regression - Precision: 0.6986721144024515, Recall: 0.6309963099630996, F1 Score: 0.6631119728550654
 Random Forest - Precision: 0.496551724137931, Recall: 0.5313653136531366, F1 Score: 0.5133689839572193
+
 ```python
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -4905,6 +4501,7 @@ plt.legend(title='Data Source')
 # Display the plot
 plt.show()
 ```
+
 ![png](tweet_stock_files/tweet_stock_79_0.png)
 
 ```python
@@ -4939,6 +4536,7 @@ best_rf_f1 = f1_score(y_test, y_pred_rf_best)
 # Display the evaluation results
 print(f"Best Random Forest - Precision: {best_rf_precision}, Recall: {best_rf_recall}, F1 Score: {best_rf_f1}")
 ```
+
 Fitting 3 folds for each of 108 candidates, totalling 324 fits
 [CV] END max_depth=None, min_samples_leaf=1, min_samples_split=2, n_estimators=100; total time=   1.0s
 [CV] END max_depth=None, min_samples_leaf=1, min_samples_split=2, n_estimators=100; total time=   1.1s
@@ -5265,6 +4863,7 @@ Fitting 3 folds for each of 108 candidates, totalling 324 fits
 [CV] END max_depth=30, min_samples_leaf=4, min_samples_split=10, n_estimators=300; total time=   2.4s
 [CV] END max_depth=30, min_samples_leaf=4, min_samples_split=10, n_estimators=300; total time=   2.5s
 Best Random Forest - Precision: 0.49448123620309054, Recall: 0.4132841328413284, F1 Score: 0.45025125628140705
+
 ```python
 # Initial seed money
 seed_money = 10000
@@ -5288,11 +4887,14 @@ profit = final_amount - seed_money
 print(f"Final amount after trading: ${final_amount:.2f}")
 print(f"Total profit: ${profit:.2f}")
 ```
+
 Final amount after trading: $0.00
 Total profit: $-10000.00
+
 ```python
 stock_data.to_csv('stock_data.csv')
 ```
+
 # 지금 해야해야될건
 
 1. 댓글에서 감성분석해서 결과값을 숫자?로 추출
@@ -5305,6 +4907,7 @@ stock_data.to_csv('stock_data.csv')
 ```python
 stock_data_senti[['date','textblob_polarity','vader_polarity','tweetnlp_polarity']].head()
 ```
+
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -5312,13 +4915,14 @@ stock_data_senti[['date','textblob_polarity','vader_polarity','tweetnlp_polarity
     }
 
 .dataframe tbody tr th {
-    vertical-align: top;
+vertical-align: top;
 }
 
 .dataframe thead th {
-    text-align: right;
+text-align: right;
 }
 </style>
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -5372,6 +4976,7 @@ stock_data_senti[['date','textblob_polarity','vader_polarity','tweetnlp_polarity
 ```python
 stock_data_senti[['textblob_polarity','vader_polarity','tweetnlp_polarity']].describe()
 ```
+
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -5379,13 +4984,14 @@ stock_data_senti[['textblob_polarity','vader_polarity','tweetnlp_polarity']].des
     }
 
 .dataframe tbody tr th {
-    vertical-align: top;
+vertical-align: top;
 }
 
 .dataframe thead th {
-    text-align: right;
+text-align: right;
 }
 </style>
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -5467,6 +5073,7 @@ stock_senti_plot('GOOGL')
 stock_senti_plot('MSFT')
 stock_senti_plot('TSLA')
 ```
+
 ![png](tweet_stock_files/tweet_stock_87_0.png)
 
 ![png](tweet_stock_files/tweet_stock_87_1.png)
@@ -5487,18 +5094,19 @@ stock_senti_plot('GOOGL','textblob_polarity')
 stock_senti_plot('MSFT','textblob_polarity')
 stock_senti_plot('TSLA','textblob_polarity')
 ```
+
 /var/folders/12/vb6sch5j7lx93jxvhtgjvhyh0000gn/T/ipykernel_61982/347198164.py:9: UserWarning: The palette list has more values (3) than needed (2), which may not be intended.
-  sns.scatterplot(x=df["date"],y=df['adj close'],hue=df['sentiment_analysis'],palette=['r','b','g'])
+sns.scatterplot(x=df["date"],y=df['adj close'],hue=df['sentiment_analysis'],palette=['r','b','g'])
 /var/folders/12/vb6sch5j7lx93jxvhtgjvhyh0000gn/T/ipykernel_61982/347198164.py:9: UserWarning: The palette list has more values (3) than needed (2), which may not be intended.
-  sns.scatterplot(x=df["date"],y=df['adj close'],hue=df['sentiment_analysis'],palette=['r','b','g'])
+sns.scatterplot(x=df["date"],y=df['adj close'],hue=df['sentiment_analysis'],palette=['r','b','g'])
 /var/folders/12/vb6sch5j7lx93jxvhtgjvhyh0000gn/T/ipykernel_61982/347198164.py:9: UserWarning: The palette list has more values (3) than needed (2), which may not be intended.
-  sns.scatterplot(x=df["date"],y=df['adj close'],hue=df['sentiment_analysis'],palette=['r','b','g'])
+sns.scatterplot(x=df["date"],y=df['adj close'],hue=df['sentiment_analysis'],palette=['r','b','g'])
 /var/folders/12/vb6sch5j7lx93jxvhtgjvhyh0000gn/T/ipykernel_61982/347198164.py:9: UserWarning: The palette list has more values (3) than needed (2), which may not be intended.
-  sns.scatterplot(x=df["date"],y=df['adj close'],hue=df['sentiment_analysis'],palette=['r','b','g'])
+sns.scatterplot(x=df["date"],y=df['adj close'],hue=df['sentiment_analysis'],palette=['r','b','g'])
 /var/folders/12/vb6sch5j7lx93jxvhtgjvhyh0000gn/T/ipykernel_61982/347198164.py:9: UserWarning: The palette list has more values (3) than needed (2), which may not be intended.
-  sns.scatterplot(x=df["date"],y=df['adj close'],hue=df['sentiment_analysis'],palette=['r','b','g'])
+sns.scatterplot(x=df["date"],y=df['adj close'],hue=df['sentiment_analysis'],palette=['r','b','g'])
 /var/folders/12/vb6sch5j7lx93jxvhtgjvhyh0000gn/T/ipykernel_61982/347198164.py:9: UserWarning: The palette list has more values (3) than needed (2), which may not be intended.
-  sns.scatterplot(x=df["date"],y=df['adj close'],hue=df['sentiment_analysis'],palette=['r','b','g'])
+sns.scatterplot(x=df["date"],y=df['adj close'],hue=df['sentiment_analysis'],palette=['r','b','g'])
 ![png](tweet_stock_files/tweet_stock_88_1.png)
 
 ![png](tweet_stock_files/tweet_stock_88_2.png)
@@ -5519,12 +5127,14 @@ stock_senti_plot('TSLA','textblob_polarity')
 # plt.title('Sentiment Analysis Distribution')
 # plt.show()
 ```
+
 # 7. Train_Data_Set
 
 ```python
 stock_data_senti = pd.read_csv('stock_data_senti.csv',index_col=0)
 stock_data_senti.head()
 ```
+
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -5532,13 +5142,14 @@ stock_data_senti.head()
     }
 
 .dataframe tbody tr th {
-    vertical-align: top;
+vertical-align: top;
 }
 
 .dataframe thead th {
-    text-align: right;
+text-align: right;
 }
 </style>
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -5678,6 +5289,7 @@ stock_data_senti.head()
 stock_data_senti = pd.read_csv('stock_data_senti.csv',index_col=0)
 stock_data_senti.head()
 ```
+
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -5685,13 +5297,14 @@ stock_data_senti.head()
     }
 
 .dataframe tbody tr th {
-    vertical-align: top;
+vertical-align: top;
 }
 
 .dataframe thead th {
-    text-align: right;
+text-align: right;
 }
 </style>
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -5851,20 +5464,21 @@ polarity_iloc = [df_for_training.columns.get_loc(c) for c in polarity_cols]
 df_for_training.sort_index(ascending=True,inplace=True)
 df_for_training
 ```
+
 ['Ticker', 'high', 'low', 'adj close', 'Volume', 'ma_7', 'ma_30', 'volatility_7', 'total_engagement', 'tweet_volume', 'textblob_polarity', 'vader_polarity', 'tweetnlp_polarity', 'Open', 'Close']
 
-
-/var/folders/12/vb6sch5j7lx93jxvhtgjvhyh0000gn/T/ipykernel_92874/783989767.py:25: SettingWithCopyWarning: 
+/var/folders/12/vb6sch5j7lx93jxvhtgjvhyh0000gn/T/ipykernel_92874/783989767.py:25: SettingWithCopyWarning:
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
-  df_for_training[cols[1:]] = df_for_training[cols[1:]].astype(float) # except 'Ticker'
-/var/folders/12/vb6sch5j7lx93jxvhtgjvhyh0000gn/T/ipykernel_92874/783989767.py:28: SettingWithCopyWarning: 
+df_for_training[cols[1:]] = df_for_training[cols[1:]].astype(float) # except 'Ticker'
+/var/folders/12/vb6sch5j7lx93jxvhtgjvhyh0000gn/T/ipykernel_92874/783989767.py:28: SettingWithCopyWarning:
 A value is trying to be set on a copy of a slice from a DataFrame
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
-  df_for_training.sort_index(ascending=True,inplace=True)
+df_for_training.sort_index(ascending=True,inplace=True)
+
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -5872,13 +5486,14 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
     }
 
 .dataframe tbody tr th {
-    vertical-align: top;
+vertical-align: top;
 }
 
 .dataframe thead th {
-    text-align: right;
+text-align: right;
 }
 </style>
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -6128,10 +5743,12 @@ df_for_training_AAPL = df_for_training[df_for_training['Ticker'] == ticker]
 print(df_for_training_AAPL.iloc[0, -5:-2])
 df_for_training_AAPL.head(8)
 ```
+
 textblob_polarity    0.513
 vader_polarity       0.369
 tweetnlp_polarity   -0.105
 Name: 2015-01-02 00:00:00, dtype: object
+
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -6139,13 +5756,14 @@ Name: 2015-01-02 00:00:00, dtype: object
     }
 
 .dataframe tbody tr th {
-    vertical-align: top;
+vertical-align: top;
 }
 
 .dataframe thead th {
-    text-align: right;
+text-align: right;
 }
 </style>
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -6348,25 +5966,23 @@ df_for_training_scaled, scaler_for_inference = minmaxscaler(df_for_training_AAPL
 print(df_for_training_scaled.shape)
 df_for_training_scaled
 ```
+
 (1255, 14)
 
-
-
-
-
 array([[0.09772617, 0.08937765, 0.07231139, ..., 0.56774131, 0.10635441,
-        0.09340419],
-       [0.08393477, 0.0796801 , 0.0587224 , ..., 0.57534356, 0.09094074,
-        0.0782549 ],
-       [0.07790411, 0.07578104, 0.05876665, ..., 0.58185435, 0.08223947,
-        0.0783041 ],
-       ...,
-       [1.        , 0.99300178, 0.98151305, ..., 0.58652178, 1.        ,
-        0.98106337],
-       [0.99367277, 0.97850543, 0.98977223, ..., 0.78985536, 0.9917462 ,
-        0.98952336],
-       [0.99856644, 1.        , 1.        , ..., 0.68220194, 0.99408312,
-        1.        ]])
+0.09340419],
+[0.08393477, 0.0796801 , 0.0587224 , ..., 0.57534356, 0.09094074,
+0.0782549 ],
+[0.07790411, 0.07578104, 0.05876665, ..., 0.58185435, 0.08223947,
+0.0783041 ],
+...,
+[1.        , 0.99300178, 0.98151305, ..., 0.58652178, 1.        ,
+0.98106337],
+[0.99367277, 0.97850543, 0.98977223, ..., 0.78985536, 0.9917462 ,
+0.98952336],
+[0.99856644, 1.        , 1.        , ..., 0.68220194, 0.99408312,
+1.        ]])
+
 ## Feature & Label Selection
 
 ```python
@@ -6380,11 +5996,11 @@ def trainX_Y(df_for_training_scaled, n_future = 1):
 
     #Reformat input data into a shape: (n_samples x timesteps x n_features)
     for i in range(n_past, len(df_for_training_scaled) - n_future): # i = 7 ~ len(df)-7+1
-      
+    
         # trainX : day 0~6, 
         #          col   all Columns
         trainX.append(df_for_training_scaled[i - n_past : i])  # ex) 0:7 = day 0~6
-      
+    
         # trainY : day 7
         #          col   ['Open','Close']
         trainY.append(df_for_training_scaled[i + n_future - 1:i + n_future, # ex) day 7
@@ -6398,8 +6014,10 @@ def trainX_Y(df_for_training_scaled, n_future = 1):
 trainX, trainY = trainX_Y(df_for_training_scaled)
 
 ```
+
 TrainX shape = (1247, 7, 14).
 TrainY shape = (1247, 1, 2).
+
 ## 2. Train Test Valid Split
 
 ```python
@@ -6407,15 +6025,13 @@ without_polarity = [i for i in range(trainX.shape[-1]) if i+1 not in polarity_il
 print(trainX.shape, df_for_training_AAPL.drop('Ticker',axis=1).shape)
 df_for_training_AAPL.drop('Ticker',axis=1).columns[without_polarity]
 ```
+
 (1247, 7, 14) (1255, 14)
 
-
-
-
-
 Index(['high', 'low', 'adj close', 'Volume', 'ma_7', 'ma_30', 'volatility_7',
-       'total_engagement', 'tweet_volume', 'Open', 'Close'],
-      dtype='object')
+'total_engagement', 'tweet_volume', 'Open', 'Close'],
+dtype='object')
+
 ```python
 def train_test_valid_split(trainX, trainY):
     without_polarity = [i for i in range(trainX.shape[-1]) if i+1 not in polarity_iloc] # indexes except polarity data
@@ -6443,6 +6059,7 @@ for T in X, X_t, Y, Y_t:
         print(v,':',t.shape)
     print()
 ```
+
 train : (897, 7, 11)
 val : (100, 7, 11)
 test : (250, 7, 11)
@@ -6458,6 +6075,7 @@ test : (250, 1, 2)
 train : (897, 1, 2)
 val : (100, 1, 2)
 test : (250, 1, 2)
+
 ## 3. LSTM Model
 
 ```python
@@ -6494,6 +6112,7 @@ def build_model(input_shape):
     cnn_lstm_model.summary()
     return cnn_lstm_model
 ```
+
 ```python
 from tensorflow.keras.callbacks import EarlyStopping
 
@@ -6529,102 +6148,113 @@ def fit_models(X, X_t, Y, Y_t):
 
 cnn_model, cnn_model_twit, history, history_twit = fit_models(X, X_t, Y, Y_t)
 ```
+
 Model: "sequential_103"
-_________________________________________________________________
- Layer (type)                Output Shape              Param #   
-=================================================================
- conv1d_200 (Conv1D)         (None, 6, 128)            2944    
-                                                               
- max_pooling1d_200 (MaxPool  (None, 3, 128)            0       
- ing1D)                                                        
-                                                               
- conv1d_201 (Conv1D)         (None, 2, 64)             16448   
-                                                               
- max_pooling1d_201 (MaxPool  (None, 1, 64)             0       
- ing1D)                                                        
-                                                               
- bidirectional_515 (Bidirec  (None, 1, 2048)           8921088   
- tional)                                                       
-                                                               
- dropout_514 (Dropout)       (None, 1, 2048)           0       
-                                                               
- bidirectional_516 (Bidirec  (None, 1, 1024)           10489856  
- tional)                                                       
-                                                               
- dropout_515 (Dropout)       (None, 1, 1024)           0       
-                                                               
- bidirectional_517 (Bidirec  (None, 1, 512)            2623488   
- tional)                                                       
-                                                               
- dropout_516 (Dropout)       (None, 1, 512)            0       
-                                                               
- bidirectional_518 (Bidirec  (None, 1, 256)            656384  
- tional)                                                       
-                                                               
- dropout_517 (Dropout)       (None, 1, 256)            0       
-                                                               
- bidirectional_519 (Bidirec  (None, 1, 128)            164352  
- tional)                                                       
-                                                               
- dropout_518 (Dropout)       (None, 1, 128)            0       
-                                                               
- dense_204 (Dense)           (None, 1, 32)             4128    
-                                                               
- dense_205 (Dense)           (None, 1, 2)              66      
-                                                               
+
+---
+
+Layer (type)                Output Shape              Param #
+=============================================================
+
+conv1d_200 (Conv1D)         (None, 6, 128)            2944
+
+max_pooling1d_200 (MaxPool  (None, 3, 128)            0
+ing1D)
+
+conv1d_201 (Conv1D)         (None, 2, 64)             16448
+
+max_pooling1d_201 (MaxPool  (None, 1, 64)             0
+ing1D)
+
+bidirectional_515 (Bidirec  (None, 1, 2048)           8921088
+tional)
+
+dropout_514 (Dropout)       (None, 1, 2048)           0
+
+bidirectional_516 (Bidirec  (None, 1, 1024)           10489856
+tional)
+
+dropout_515 (Dropout)       (None, 1, 1024)           0
+
+bidirectional_517 (Bidirec  (None, 1, 512)            2623488
+tional)
+
+dropout_516 (Dropout)       (None, 1, 512)            0
+
+bidirectional_518 (Bidirec  (None, 1, 256)            656384
+tional)
+
+dropout_517 (Dropout)       (None, 1, 256)            0
+
+bidirectional_519 (Bidirec  (None, 1, 128)            164352
+tional)
+
+dropout_518 (Dropout)       (None, 1, 128)            0
+
+dense_204 (Dense)           (None, 1, 32)             4128
+
+dense_205 (Dense)           (None, 1, 2)              66
+
 =================================================================
 Total params: 22878754 (87.28 MB)
 Trainable params: 22878754 (87.28 MB)
 Non-trainable params: 0 (0.00 Byte)
-_________________________________________________________________
+
+---
+
 Model: "sequential_104"
-_________________________________________________________________
- Layer (type)                Output Shape              Param #   
-=================================================================
- conv1d_202 (Conv1D)         (None, 6, 128)            3712    
-                                                               
- max_pooling1d_202 (MaxPool  (None, 3, 128)            0       
- ing1D)                                                        
-                                                               
- conv1d_203 (Conv1D)         (None, 2, 64)             16448   
-                                                               
- max_pooling1d_203 (MaxPool  (None, 1, 64)             0       
- ing1D)                                                        
-                                                               
- bidirectional_520 (Bidirec  (None, 1, 2048)           8921088   
- tional)                                                       
-                                                               
- dropout_519 (Dropout)       (None, 1, 2048)           0       
-                                                               
- bidirectional_521 (Bidirec  (None, 1, 1024)           10489856  
- tional)                                                       
-                                                               
- dropout_520 (Dropout)       (None, 1, 1024)           0       
-                                                               
- bidirectional_522 (Bidirec  (None, 1, 512)            2623488   
- tional)                                                       
-                                                               
- dropout_521 (Dropout)       (None, 1, 512)            0       
-                                                               
- bidirectional_523 (Bidirec  (None, 1, 256)            656384  
- tional)                                                       
-                                                               
- dropout_522 (Dropout)       (None, 1, 256)            0       
-                                                               
- bidirectional_524 (Bidirec  (None, 1, 128)            164352  
- tional)                                                       
-                                                               
- dropout_523 (Dropout)       (None, 1, 128)            0       
-                                                               
- dense_206 (Dense)           (None, 1, 32)             4128    
-                                                               
- dense_207 (Dense)           (None, 1, 2)              66      
-                                                               
+
+---
+
+Layer (type)                Output Shape              Param #
+=============================================================
+
+conv1d_202 (Conv1D)         (None, 6, 128)            3712
+
+max_pooling1d_202 (MaxPool  (None, 3, 128)            0
+ing1D)
+
+conv1d_203 (Conv1D)         (None, 2, 64)             16448
+
+max_pooling1d_203 (MaxPool  (None, 1, 64)             0
+ing1D)
+
+bidirectional_520 (Bidirec  (None, 1, 2048)           8921088
+tional)
+
+dropout_519 (Dropout)       (None, 1, 2048)           0
+
+bidirectional_521 (Bidirec  (None, 1, 1024)           10489856
+tional)
+
+dropout_520 (Dropout)       (None, 1, 1024)           0
+
+bidirectional_522 (Bidirec  (None, 1, 512)            2623488
+tional)
+
+dropout_521 (Dropout)       (None, 1, 512)            0
+
+bidirectional_523 (Bidirec  (None, 1, 256)            656384
+tional)
+
+dropout_522 (Dropout)       (None, 1, 256)            0
+
+bidirectional_524 (Bidirec  (None, 1, 128)            164352
+tional)
+
+dropout_523 (Dropout)       (None, 1, 128)            0
+
+dense_206 (Dense)           (None, 1, 32)             4128
+
+dense_207 (Dense)           (None, 1, 2)              66
+
 =================================================================
 Total params: 22879522 (87.28 MB)
 Trainable params: 22879522 (87.28 MB)
 Non-trainable params: 0 (0.00 Byte)
-_________________________________________________________________
+
+---
+
 Epoch 1/100
 15/15 [==============================] - 27s 487ms/step - loss: 0.0390 - val_loss: 0.1047
 Epoch 2/100
@@ -6807,6 +6437,7 @@ Epoch 33/100
 15/15 [==============================] - 2s 150ms/step - loss: 4.6049e-04 - val_loss: 0.0044
 Epoch 34/100
 15/15 [==============================] - 2s 144ms/step - loss: 4.6984e-04 - val_loss: 0.0048
+
 ## 4. Visualization
 
 ### 1. Plotting Training and validation loss
@@ -6833,6 +6464,7 @@ def loss_plot(history, history_twit):
 # 예제 사용
 loss_plot(history, history_twit)
 ```
+
 ![png](tweet_stock_files/tweet_stock_109_0.png)
 
 ### 2. Plotting Prediction Results
@@ -6870,6 +6502,7 @@ def plot_predictions_with_dates(type, twitter, dates, y_actual_lstm, y_pred_lstm
     print(f'Root Mean Squared Error (RMSE) for {predicted_features[1]} = {errors[1]}')
     print('Total Root Mean Squared Error (RMSE)', np.sqrt(mean_squared_error(y_actual_lstm, y_pred_lstm)))
 ```
+
 #### Train Data
 
 ##### Computing  accuracy
@@ -6898,28 +6531,34 @@ def computing_accuracy(X_, X_twit_,y_):
 
 y_pred, y_pred_twit, y_actual = computing_accuracy(X_train, X_train_twit,y_train)
 ```
+
 29/29 [==============================] - 2s 10ms/step
 29/29 [==============================] - 2s 10ms/step
+
 ##### Accuracy without twitter
 
 ```python
 plot_predictions_with_dates('Training',False,train_dates,y_actual,y_pred)
 ```
+
 ![png](tweet_stock_files/tweet_stock_116_0.png)
 
 Root Mean Squared Error (RMSE) for Open = 4.783395799659464
 Root Mean Squared Error (RMSE) for Close = 4.336716296771257
 Total Root Mean Squared Error (RMSE) 4.565522073918886
+
 ##### Accuracy with the impact of twitter sentiment analysis
 
 ```python
 plot_predictions_with_dates('Training',True,train_dates,y_actual,y_pred_twit)
 ```
+
 ![png](tweet_stock_files/tweet_stock_118_0.png)
 
 Root Mean Squared Error (RMSE) for Open = 3.058509961819492
 Root Mean Squared Error (RMSE) for Close = 3.2630001507739252
 Total Root Mean Squared Error (RMSE) 3.1624083520712287
+
 #### Valid Data
 
 ##### Computing accuracy
@@ -6930,6 +6569,7 @@ Total Root Mean Squared Error (RMSE) 3.1624083520712287
 y_pred, y_pred_twit, y_actual = computing_accuracy(X_val, X_val_twit, y_val)
 plot_predictions_with_dates('Validation',False,val_dates,y_actual,y_pred)
 ```
+
 4/4 [==============================] - 0s 11ms/step
 4/4 [==============================] - 0s 11ms/step
 ![png](tweet_stock_files/tweet_stock_122_1.png)
@@ -6937,16 +6577,19 @@ plot_predictions_with_dates('Validation',False,val_dates,y_actual,y_pred)
 Root Mean Squared Error (RMSE) for Open = 8.435624937150946
 Root Mean Squared Error (RMSE) for Close = 9.126866658195894
 Total Root Mean Squared Error (RMSE) 8.788044807486214
+
 ##### Accuracy with the impact of twitter sentiment analysis
 
 ```python
 plot_predictions_with_dates('Validation',True,val_dates,y_actual,y_pred_twit)
 ```
+
 ![png](tweet_stock_files/tweet_stock_124_0.png)
 
 Root Mean Squared Error (RMSE) for Open = 6.097256299537074
 Root Mean Squared Error (RMSE) for Close = 6.583603362566209
 Total Root Mean Squared Error (RMSE) 6.345091316042568
+
 #### Test Data
 
 ##### Computing accuracy
@@ -6957,6 +6600,7 @@ Total Root Mean Squared Error (RMSE) 6.345091316042568
 y_pred, y_pred_twit, y_actual = computing_accuracy(X_test, X_test_twit,y_test)
 plot_predictions_with_dates('Testing',False,test_dates,y_actual,y_pred)
 ```
+
 8/8 [==============================] - 0s 11ms/step
 8/8 [==============================] - 0s 12ms/step
 ![png](tweet_stock_files/tweet_stock_128_1.png)
@@ -6964,16 +6608,19 @@ plot_predictions_with_dates('Testing',False,test_dates,y_actual,y_pred)
 Root Mean Squared Error (RMSE) for Open = 16.086336986804856
 Root Mean Squared Error (RMSE) for Close = 17.270802566385484
 Total Root Mean Squared Error (RMSE) 16.689081145169638
+
 ##### Accuracy with the impact of twitter sentiment analysis
 
 ```python
 plot_predictions_with_dates('Testing',True,test_dates,y_actual,y_pred_twit)
 ```
+
 ![png](tweet_stock_files/tweet_stock_130_0.png)
 
 Root Mean Squared Error (RMSE) for Open = 12.288276138461866
 Root Mean Squared Error (RMSE) for Close = 12.694057970844177
 Total Root Mean Squared Error (RMSE) 12.492814699303034
+
 # 9. LSTM Pipline
 
 ## 9.1 AAPL t-7
@@ -7008,104 +6655,115 @@ def tweet_stock_pipline(df_for_training, ticker='AAPL', n_future = 1):
   
 tweet_stock_pipline(df_for_training, 'AAPL', n_future=7)
 ```
+
 TrainX shape = (1241, 7, 14).
 TrainY shape = (1241, 1, 2).
 Model: "sequential_88"
-_________________________________________________________________
- Layer (type)                Output Shape              Param #   
-=================================================================
- conv1d_170 (Conv1D)         (None, 6, 128)            2944    
-                                                               
- max_pooling1d_170 (MaxPool  (None, 3, 128)            0       
- ing1D)                                                        
-                                                               
- conv1d_171 (Conv1D)         (None, 2, 64)             16448   
-                                                               
- max_pooling1d_171 (MaxPool  (None, 1, 64)             0       
- ing1D)                                                        
-                                                               
- bidirectional_440 (Bidirec  (None, 1, 2048)           8921088   
- tional)                                                       
-                                                               
- dropout_440 (Dropout)       (None, 1, 2048)           0       
-                                                               
- bidirectional_441 (Bidirec  (None, 1, 1024)           10489856  
- tional)                                                       
-                                                               
- dropout_441 (Dropout)       (None, 1, 1024)           0       
-                                                               
- bidirectional_442 (Bidirec  (None, 1, 512)            2623488   
- tional)                                                       
-                                                               
- dropout_442 (Dropout)       (None, 1, 512)            0       
-                                                               
- bidirectional_443 (Bidirec  (None, 1, 256)            656384  
- tional)                                                       
-                                                               
- dropout_443 (Dropout)       (None, 1, 256)            0       
-                                                               
- bidirectional_444 (Bidirec  (None, 1, 128)            164352  
- tional)                                                       
-                                                               
- dropout_444 (Dropout)       (None, 1, 128)            0       
-                                                               
- dense_176 (Dense)           (None, 1, 32)             4128    
-                                                               
- dense_177 (Dense)           (None, 1, 2)              66      
-                                                               
+
+---
+
+Layer (type)                Output Shape              Param #
+=============================================================
+
+conv1d_170 (Conv1D)         (None, 6, 128)            2944
+
+max_pooling1d_170 (MaxPool  (None, 3, 128)            0
+ing1D)
+
+conv1d_171 (Conv1D)         (None, 2, 64)             16448
+
+max_pooling1d_171 (MaxPool  (None, 1, 64)             0
+ing1D)
+
+bidirectional_440 (Bidirec  (None, 1, 2048)           8921088
+tional)
+
+dropout_440 (Dropout)       (None, 1, 2048)           0
+
+bidirectional_441 (Bidirec  (None, 1, 1024)           10489856
+tional)
+
+dropout_441 (Dropout)       (None, 1, 1024)           0
+
+bidirectional_442 (Bidirec  (None, 1, 512)            2623488
+tional)
+
+dropout_442 (Dropout)       (None, 1, 512)            0
+
+bidirectional_443 (Bidirec  (None, 1, 256)            656384
+tional)
+
+dropout_443 (Dropout)       (None, 1, 256)            0
+
+bidirectional_444 (Bidirec  (None, 1, 128)            164352
+tional)
+
+dropout_444 (Dropout)       (None, 1, 128)            0
+
+dense_176 (Dense)           (None, 1, 32)             4128
+
+dense_177 (Dense)           (None, 1, 2)              66
+
 =================================================================
 Total params: 22878754 (87.28 MB)
 Trainable params: 22878754 (87.28 MB)
 Non-trainable params: 0 (0.00 Byte)
-_________________________________________________________________
+
+---
+
 Model: "sequential_89"
-_________________________________________________________________
- Layer (type)                Output Shape              Param #   
-=================================================================
- conv1d_172 (Conv1D)         (None, 6, 128)            3712    
-                                                               
- max_pooling1d_172 (MaxPool  (None, 3, 128)            0       
- ing1D)                                                        
-                                                               
- conv1d_173 (Conv1D)         (None, 2, 64)             16448   
-                                                               
- max_pooling1d_173 (MaxPool  (None, 1, 64)             0       
- ing1D)                                                        
-                                                               
- bidirectional_445 (Bidirec  (None, 1, 2048)           8921088   
- tional)                                                       
-                                                               
- dropout_445 (Dropout)       (None, 1, 2048)           0       
-                                                               
- bidirectional_446 (Bidirec  (None, 1, 1024)           10489856  
- tional)                                                       
-                                                               
- dropout_446 (Dropout)       (None, 1, 1024)           0       
-                                                               
- bidirectional_447 (Bidirec  (None, 1, 512)            2623488   
- tional)                                                       
-                                                               
- dropout_447 (Dropout)       (None, 1, 512)            0       
-                                                               
- bidirectional_448 (Bidirec  (None, 1, 256)            656384  
- tional)                                                       
-                                                               
- dropout_448 (Dropout)       (None, 1, 256)            0       
-                                                               
- bidirectional_449 (Bidirec  (None, 1, 128)            164352  
- tional)                                                       
-                                                               
- dropout_449 (Dropout)       (None, 1, 128)            0       
-                                                               
- dense_178 (Dense)           (None, 1, 32)             4128    
-                                                               
- dense_179 (Dense)           (None, 1, 2)              66      
-                                                               
+
+---
+
+Layer (type)                Output Shape              Param #
+=============================================================
+
+conv1d_172 (Conv1D)         (None, 6, 128)            3712
+
+max_pooling1d_172 (MaxPool  (None, 3, 128)            0
+ing1D)
+
+conv1d_173 (Conv1D)         (None, 2, 64)             16448
+
+max_pooling1d_173 (MaxPool  (None, 1, 64)             0
+ing1D)
+
+bidirectional_445 (Bidirec  (None, 1, 2048)           8921088
+tional)
+
+dropout_445 (Dropout)       (None, 1, 2048)           0
+
+bidirectional_446 (Bidirec  (None, 1, 1024)           10489856
+tional)
+
+dropout_446 (Dropout)       (None, 1, 1024)           0
+
+bidirectional_447 (Bidirec  (None, 1, 512)            2623488
+tional)
+
+dropout_447 (Dropout)       (None, 1, 512)            0
+
+bidirectional_448 (Bidirec  (None, 1, 256)            656384
+tional)
+
+dropout_448 (Dropout)       (None, 1, 256)            0
+
+bidirectional_449 (Bidirec  (None, 1, 128)            164352
+tional)
+
+dropout_449 (Dropout)       (None, 1, 128)            0
+
+dense_178 (Dense)           (None, 1, 32)             4128
+
+dense_179 (Dense)           (None, 1, 2)              66
+
 =================================================================
 Total params: 22879522 (87.28 MB)
 Trainable params: 22879522 (87.28 MB)
 Non-trainable params: 0 (0.00 Byte)
-_________________________________________________________________
+
+---
+
 Epoch 1/100
 14/14 [==============================] - 16s 493ms/step - loss: 0.0382 - val_loss: 0.0802
 Epoch 2/100
@@ -7378,109 +7036,121 @@ Total Root Mean Squared Error (RMSE) 17.88768300239847
 Root Mean Squared Error (RMSE) for Open = 13.89791155931617
 Root Mean Squared Error (RMSE) for Close = 14.232765561473645
 Total Root Mean Squared Error (RMSE) 14.066335010201561
+
 ## 9.2 MSFT t-1
 
 ```python
 tweet_stock_pipline(df_for_training, 'MSFT')
 ```
+
 TrainX shape = (1250, 7, 14).
 TrainY shape = (1250, 1, 2).
 Model: "sequential_90"
-_________________________________________________________________
- Layer (type)                Output Shape              Param #   
-=================================================================
- conv1d_174 (Conv1D)         (None, 6, 128)            2944    
-                                                               
- max_pooling1d_174 (MaxPool  (None, 3, 128)            0       
- ing1D)                                                        
-                                                               
- conv1d_175 (Conv1D)         (None, 2, 64)             16448   
-                                                               
- max_pooling1d_175 (MaxPool  (None, 1, 64)             0       
- ing1D)                                                        
-                                                               
- bidirectional_450 (Bidirec  (None, 1, 2048)           8921088   
- tional)                                                       
-                                                               
- dropout_450 (Dropout)       (None, 1, 2048)           0       
-                                                               
- bidirectional_451 (Bidirec  (None, 1, 1024)           10489856  
- tional)                                                       
-                                                               
- dropout_451 (Dropout)       (None, 1, 1024)           0       
-                                                               
- bidirectional_452 (Bidirec  (None, 1, 512)            2623488   
- tional)                                                       
-                                                               
- dropout_452 (Dropout)       (None, 1, 512)            0       
-                                                               
- bidirectional_453 (Bidirec  (None, 1, 256)            656384  
- tional)                                                       
-                                                               
- dropout_453 (Dropout)       (None, 1, 256)            0       
-                                                               
- bidirectional_454 (Bidirec  (None, 1, 128)            164352  
- tional)                                                       
-                                                               
- dropout_454 (Dropout)       (None, 1, 128)            0       
-                                                               
- dense_180 (Dense)           (None, 1, 32)             4128    
-                                                               
- dense_181 (Dense)           (None, 1, 2)              66      
-                                                               
+
+---
+
+Layer (type)                Output Shape              Param #
+=============================================================
+
+conv1d_174 (Conv1D)         (None, 6, 128)            2944
+
+max_pooling1d_174 (MaxPool  (None, 3, 128)            0
+ing1D)
+
+conv1d_175 (Conv1D)         (None, 2, 64)             16448
+
+max_pooling1d_175 (MaxPool  (None, 1, 64)             0
+ing1D)
+
+bidirectional_450 (Bidirec  (None, 1, 2048)           8921088
+tional)
+
+dropout_450 (Dropout)       (None, 1, 2048)           0
+
+bidirectional_451 (Bidirec  (None, 1, 1024)           10489856
+tional)
+
+dropout_451 (Dropout)       (None, 1, 1024)           0
+
+bidirectional_452 (Bidirec  (None, 1, 512)            2623488
+tional)
+
+dropout_452 (Dropout)       (None, 1, 512)            0
+
+bidirectional_453 (Bidirec  (None, 1, 256)            656384
+tional)
+
+dropout_453 (Dropout)       (None, 1, 256)            0
+
+bidirectional_454 (Bidirec  (None, 1, 128)            164352
+tional)
+
+dropout_454 (Dropout)       (None, 1, 128)            0
+
+dense_180 (Dense)           (None, 1, 32)             4128
+
+dense_181 (Dense)           (None, 1, 2)              66
+
 =================================================================
 Total params: 22878754 (87.28 MB)
 Trainable params: 22878754 (87.28 MB)
 Non-trainable params: 0 (0.00 Byte)
-_________________________________________________________________
+
+---
+
 Model: "sequential_91"
-_________________________________________________________________
- Layer (type)                Output Shape              Param #   
-=================================================================
- conv1d_176 (Conv1D)         (None, 6, 128)            3712    
-                                                               
- max_pooling1d_176 (MaxPool  (None, 3, 128)            0       
- ing1D)                                                        
-                                                               
- conv1d_177 (Conv1D)         (None, 2, 64)             16448   
-                                                               
- max_pooling1d_177 (MaxPool  (None, 1, 64)             0       
- ing1D)                                                        
-                                                               
- bidirectional_455 (Bidirec  (None, 1, 2048)           8921088   
- tional)                                                       
-                                                               
- dropout_455 (Dropout)       (None, 1, 2048)           0       
-                                                               
- bidirectional_456 (Bidirec  (None, 1, 1024)           10489856  
- tional)                                                       
-                                                               
- dropout_456 (Dropout)       (None, 1, 1024)           0       
-                                                               
- bidirectional_457 (Bidirec  (None, 1, 512)            2623488   
- tional)                                                       
-                                                               
- dropout_457 (Dropout)       (None, 1, 512)            0       
-                                                               
- bidirectional_458 (Bidirec  (None, 1, 256)            656384  
- tional)                                                       
-                                                               
- dropout_458 (Dropout)       (None, 1, 256)            0       
-                                                               
- bidirectional_459 (Bidirec  (None, 1, 128)            164352  
- tional)                                                       
-                                                               
- dropout_459 (Dropout)       (None, 1, 128)            0       
-                                                               
- dense_182 (Dense)           (None, 1, 32)             4128    
-                                                               
- dense_183 (Dense)           (None, 1, 2)              66      
-                                                               
+
+---
+
+Layer (type)                Output Shape              Param #
+=============================================================
+
+conv1d_176 (Conv1D)         (None, 6, 128)            3712
+
+max_pooling1d_176 (MaxPool  (None, 3, 128)            0
+ing1D)
+
+conv1d_177 (Conv1D)         (None, 2, 64)             16448
+
+max_pooling1d_177 (MaxPool  (None, 1, 64)             0
+ing1D)
+
+bidirectional_455 (Bidirec  (None, 1, 2048)           8921088
+tional)
+
+dropout_455 (Dropout)       (None, 1, 2048)           0
+
+bidirectional_456 (Bidirec  (None, 1, 1024)           10489856
+tional)
+
+dropout_456 (Dropout)       (None, 1, 1024)           0
+
+bidirectional_457 (Bidirec  (None, 1, 512)            2623488
+tional)
+
+dropout_457 (Dropout)       (None, 1, 512)            0
+
+bidirectional_458 (Bidirec  (None, 1, 256)            656384
+tional)
+
+dropout_458 (Dropout)       (None, 1, 256)            0
+
+bidirectional_459 (Bidirec  (None, 1, 128)            164352
+tional)
+
+dropout_459 (Dropout)       (None, 1, 128)            0
+
+dense_182 (Dense)           (None, 1, 32)             4128
+
+dense_183 (Dense)           (None, 1, 2)              66
+
 =================================================================
 Total params: 22879522 (87.28 MB)
 Trainable params: 22879522 (87.28 MB)
 Non-trainable params: 0 (0.00 Byte)
-_________________________________________________________________
+
+---
+
 Epoch 1/100
 15/15 [==============================] - 9s 173ms/step - loss: 0.0376 - val_loss: 0.0881
 Epoch 2/100
@@ -7641,109 +7311,121 @@ Total Root Mean Squared Error (RMSE) 25.256680983320127
 Root Mean Squared Error (RMSE) for Open = 16.028172273537777
 Root Mean Squared Error (RMSE) for Close = 18.109340935407406
 Total Root Mean Squared Error (RMSE) 17.10044642026967
+
 ## 9.3 GOOG t-1
 
 ```python
 tweet_stock_pipline(df_for_training, 'GOOG')
 ```
+
 TrainX shape = (1249, 7, 14).
 TrainY shape = (1249, 1, 2).
 Model: "sequential_92"
-_________________________________________________________________
- Layer (type)                Output Shape              Param #   
-=================================================================
- conv1d_178 (Conv1D)         (None, 6, 128)            2944    
-                                                               
- max_pooling1d_178 (MaxPool  (None, 3, 128)            0       
- ing1D)                                                        
-                                                               
- conv1d_179 (Conv1D)         (None, 2, 64)             16448   
-                                                               
- max_pooling1d_179 (MaxPool  (None, 1, 64)             0       
- ing1D)                                                        
-                                                               
- bidirectional_460 (Bidirec  (None, 1, 2048)           8921088   
- tional)                                                       
-                                                               
- dropout_460 (Dropout)       (None, 1, 2048)           0       
-                                                               
- bidirectional_461 (Bidirec  (None, 1, 1024)           10489856  
- tional)                                                       
-                                                               
- dropout_461 (Dropout)       (None, 1, 1024)           0       
-                                                               
- bidirectional_462 (Bidirec  (None, 1, 512)            2623488   
- tional)                                                       
-                                                               
- dropout_462 (Dropout)       (None, 1, 512)            0       
-                                                               
- bidirectional_463 (Bidirec  (None, 1, 256)            656384  
- tional)                                                       
-                                                               
- dropout_463 (Dropout)       (None, 1, 256)            0       
-                                                               
- bidirectional_464 (Bidirec  (None, 1, 128)            164352  
- tional)                                                       
-                                                               
- dropout_464 (Dropout)       (None, 1, 128)            0       
-                                                               
- dense_184 (Dense)           (None, 1, 32)             4128    
-                                                               
- dense_185 (Dense)           (None, 1, 2)              66      
-                                                               
+
+---
+
+Layer (type)                Output Shape              Param #
+=============================================================
+
+conv1d_178 (Conv1D)         (None, 6, 128)            2944
+
+max_pooling1d_178 (MaxPool  (None, 3, 128)            0
+ing1D)
+
+conv1d_179 (Conv1D)         (None, 2, 64)             16448
+
+max_pooling1d_179 (MaxPool  (None, 1, 64)             0
+ing1D)
+
+bidirectional_460 (Bidirec  (None, 1, 2048)           8921088
+tional)
+
+dropout_460 (Dropout)       (None, 1, 2048)           0
+
+bidirectional_461 (Bidirec  (None, 1, 1024)           10489856
+tional)
+
+dropout_461 (Dropout)       (None, 1, 1024)           0
+
+bidirectional_462 (Bidirec  (None, 1, 512)            2623488
+tional)
+
+dropout_462 (Dropout)       (None, 1, 512)            0
+
+bidirectional_463 (Bidirec  (None, 1, 256)            656384
+tional)
+
+dropout_463 (Dropout)       (None, 1, 256)            0
+
+bidirectional_464 (Bidirec  (None, 1, 128)            164352
+tional)
+
+dropout_464 (Dropout)       (None, 1, 128)            0
+
+dense_184 (Dense)           (None, 1, 32)             4128
+
+dense_185 (Dense)           (None, 1, 2)              66
+
 =================================================================
 Total params: 22878754 (87.28 MB)
 Trainable params: 22878754 (87.28 MB)
 Non-trainable params: 0 (0.00 Byte)
-_________________________________________________________________
+
+---
+
 Model: "sequential_93"
-_________________________________________________________________
- Layer (type)                Output Shape              Param #   
-=================================================================
- conv1d_180 (Conv1D)         (None, 6, 128)            3712    
-                                                               
- max_pooling1d_180 (MaxPool  (None, 3, 128)            0       
- ing1D)                                                        
-                                                               
- conv1d_181 (Conv1D)         (None, 2, 64)             16448   
-                                                               
- max_pooling1d_181 (MaxPool  (None, 1, 64)             0       
- ing1D)                                                        
-                                                               
- bidirectional_465 (Bidirec  (None, 1, 2048)           8921088   
- tional)                                                       
-                                                               
- dropout_465 (Dropout)       (None, 1, 2048)           0       
-                                                               
- bidirectional_466 (Bidirec  (None, 1, 1024)           10489856  
- tional)                                                       
-                                                               
- dropout_466 (Dropout)       (None, 1, 1024)           0       
-                                                               
- bidirectional_467 (Bidirec  (None, 1, 512)            2623488   
- tional)                                                       
-                                                               
- dropout_467 (Dropout)       (None, 1, 512)            0       
-                                                               
- bidirectional_468 (Bidirec  (None, 1, 256)            656384  
- tional)                                                       
-                                                               
- dropout_468 (Dropout)       (None, 1, 256)            0       
-                                                               
- bidirectional_469 (Bidirec  (None, 1, 128)            164352  
- tional)                                                       
-                                                               
- dropout_469 (Dropout)       (None, 1, 128)            0       
-                                                               
- dense_186 (Dense)           (None, 1, 32)             4128    
-                                                               
- dense_187 (Dense)           (None, 1, 2)              66      
-                                                               
+
+---
+
+Layer (type)                Output Shape              Param #
+=============================================================
+
+conv1d_180 (Conv1D)         (None, 6, 128)            3712
+
+max_pooling1d_180 (MaxPool  (None, 3, 128)            0
+ing1D)
+
+conv1d_181 (Conv1D)         (None, 2, 64)             16448
+
+max_pooling1d_181 (MaxPool  (None, 1, 64)             0
+ing1D)
+
+bidirectional_465 (Bidirec  (None, 1, 2048)           8921088
+tional)
+
+dropout_465 (Dropout)       (None, 1, 2048)           0
+
+bidirectional_466 (Bidirec  (None, 1, 1024)           10489856
+tional)
+
+dropout_466 (Dropout)       (None, 1, 1024)           0
+
+bidirectional_467 (Bidirec  (None, 1, 512)            2623488
+tional)
+
+dropout_467 (Dropout)       (None, 1, 512)            0
+
+bidirectional_468 (Bidirec  (None, 1, 256)            656384
+tional)
+
+dropout_468 (Dropout)       (None, 1, 256)            0
+
+bidirectional_469 (Bidirec  (None, 1, 128)            164352
+tional)
+
+dropout_469 (Dropout)       (None, 1, 128)            0
+
+dense_186 (Dense)           (None, 1, 32)             4128
+
+dense_187 (Dense)           (None, 1, 2)              66
+
 =================================================================
 Total params: 22879522 (87.28 MB)
 Trainable params: 22879522 (87.28 MB)
 Non-trainable params: 0 (0.00 Byte)
-_________________________________________________________________
+
+---
+
 Epoch 1/100
 15/15 [==============================] - 9s 196ms/step - loss: 0.0974 - val_loss: 0.1839
 Epoch 2/100
@@ -7900,109 +7582,121 @@ Total Root Mean Squared Error (RMSE) 28.23015004235708
 Root Mean Squared Error (RMSE) for Open = 19.10214117784766
 Root Mean Squared Error (RMSE) for Close = 21.703524438107063
 Total Root Mean Squared Error (RMSE) 20.444250666311223
+
 ## 9.4 GOOGL t-1
 
 ```python
 tweet_stock_pipline(df_for_training, 'GOOGL')
 ```
+
 TrainX shape = (1250, 7, 14).
 TrainY shape = (1250, 1, 2).
 Model: "sequential_94"
-_________________________________________________________________
- Layer (type)                Output Shape              Param #   
-=================================================================
- conv1d_182 (Conv1D)         (None, 6, 128)            2944    
-                                                               
- max_pooling1d_182 (MaxPool  (None, 3, 128)            0       
- ing1D)                                                        
-                                                               
- conv1d_183 (Conv1D)         (None, 2, 64)             16448   
-                                                               
- max_pooling1d_183 (MaxPool  (None, 1, 64)             0       
- ing1D)                                                        
-                                                               
- bidirectional_470 (Bidirec  (None, 1, 2048)           8921088   
- tional)                                                       
-                                                               
- dropout_470 (Dropout)       (None, 1, 2048)           0       
-                                                               
- bidirectional_471 (Bidirec  (None, 1, 1024)           10489856  
- tional)                                                       
-                                                               
- dropout_471 (Dropout)       (None, 1, 1024)           0       
-                                                               
- bidirectional_472 (Bidirec  (None, 1, 512)            2623488   
- tional)                                                       
-                                                               
- dropout_472 (Dropout)       (None, 1, 512)            0       
-                                                               
- bidirectional_473 (Bidirec  (None, 1, 256)            656384  
- tional)                                                       
-                                                               
- dropout_473 (Dropout)       (None, 1, 256)            0       
-                                                               
- bidirectional_474 (Bidirec  (None, 1, 128)            164352  
- tional)                                                       
-                                                               
- dropout_474 (Dropout)       (None, 1, 128)            0       
-                                                               
- dense_188 (Dense)           (None, 1, 32)             4128    
-                                                               
- dense_189 (Dense)           (None, 1, 2)              66      
-                                                               
+
+---
+
+Layer (type)                Output Shape              Param #
+=============================================================
+
+conv1d_182 (Conv1D)         (None, 6, 128)            2944
+
+max_pooling1d_182 (MaxPool  (None, 3, 128)            0
+ing1D)
+
+conv1d_183 (Conv1D)         (None, 2, 64)             16448
+
+max_pooling1d_183 (MaxPool  (None, 1, 64)             0
+ing1D)
+
+bidirectional_470 (Bidirec  (None, 1, 2048)           8921088
+tional)
+
+dropout_470 (Dropout)       (None, 1, 2048)           0
+
+bidirectional_471 (Bidirec  (None, 1, 1024)           10489856
+tional)
+
+dropout_471 (Dropout)       (None, 1, 1024)           0
+
+bidirectional_472 (Bidirec  (None, 1, 512)            2623488
+tional)
+
+dropout_472 (Dropout)       (None, 1, 512)            0
+
+bidirectional_473 (Bidirec  (None, 1, 256)            656384
+tional)
+
+dropout_473 (Dropout)       (None, 1, 256)            0
+
+bidirectional_474 (Bidirec  (None, 1, 128)            164352
+tional)
+
+dropout_474 (Dropout)       (None, 1, 128)            0
+
+dense_188 (Dense)           (None, 1, 32)             4128
+
+dense_189 (Dense)           (None, 1, 2)              66
+
 =================================================================
 Total params: 22878754 (87.28 MB)
 Trainable params: 22878754 (87.28 MB)
 Non-trainable params: 0 (0.00 Byte)
-_________________________________________________________________
+
+---
+
 Model: "sequential_95"
-_________________________________________________________________
- Layer (type)                Output Shape              Param #   
-=================================================================
- conv1d_184 (Conv1D)         (None, 6, 128)            3712    
-                                                               
- max_pooling1d_184 (MaxPool  (None, 3, 128)            0       
- ing1D)                                                        
-                                                               
- conv1d_185 (Conv1D)         (None, 2, 64)             16448   
-                                                               
- max_pooling1d_185 (MaxPool  (None, 1, 64)             0       
- ing1D)                                                        
-                                                               
- bidirectional_475 (Bidirec  (None, 1, 2048)           8921088   
- tional)                                                       
-                                                               
- dropout_475 (Dropout)       (None, 1, 2048)           0       
-                                                               
- bidirectional_476 (Bidirec  (None, 1, 1024)           10489856  
- tional)                                                       
-                                                               
- dropout_476 (Dropout)       (None, 1, 1024)           0       
-                                                               
- bidirectional_477 (Bidirec  (None, 1, 512)            2623488   
- tional)                                                       
-                                                               
- dropout_477 (Dropout)       (None, 1, 512)            0       
-                                                               
- bidirectional_478 (Bidirec  (None, 1, 256)            656384  
- tional)                                                       
-                                                               
- dropout_478 (Dropout)       (None, 1, 256)            0       
-                                                               
- bidirectional_479 (Bidirec  (None, 1, 128)            164352  
- tional)                                                       
-                                                               
- dropout_479 (Dropout)       (None, 1, 128)            0       
-                                                               
- dense_190 (Dense)           (None, 1, 32)             4128    
-                                                               
- dense_191 (Dense)           (None, 1, 2)              66      
-                                                               
+
+---
+
+Layer (type)                Output Shape              Param #
+=============================================================
+
+conv1d_184 (Conv1D)         (None, 6, 128)            3712
+
+max_pooling1d_184 (MaxPool  (None, 3, 128)            0
+ing1D)
+
+conv1d_185 (Conv1D)         (None, 2, 64)             16448
+
+max_pooling1d_185 (MaxPool  (None, 1, 64)             0
+ing1D)
+
+bidirectional_475 (Bidirec  (None, 1, 2048)           8921088
+tional)
+
+dropout_475 (Dropout)       (None, 1, 2048)           0
+
+bidirectional_476 (Bidirec  (None, 1, 1024)           10489856
+tional)
+
+dropout_476 (Dropout)       (None, 1, 1024)           0
+
+bidirectional_477 (Bidirec  (None, 1, 512)            2623488
+tional)
+
+dropout_477 (Dropout)       (None, 1, 512)            0
+
+bidirectional_478 (Bidirec  (None, 1, 256)            656384
+tional)
+
+dropout_478 (Dropout)       (None, 1, 256)            0
+
+bidirectional_479 (Bidirec  (None, 1, 128)            164352
+tional)
+
+dropout_479 (Dropout)       (None, 1, 128)            0
+
+dense_190 (Dense)           (None, 1, 32)             4128
+
+dense_191 (Dense)           (None, 1, 2)              66
+
 =================================================================
 Total params: 22879522 (87.28 MB)
 Trainable params: 22879522 (87.28 MB)
 Non-trainable params: 0 (0.00 Byte)
-_________________________________________________________________
+
+---
+
 Epoch 1/100
 15/15 [==============================] - 11s 246ms/step - loss: 0.1135 - val_loss: 0.0858
 Epoch 2/100
@@ -8205,109 +7899,121 @@ Total Root Mean Squared Error (RMSE) 28.428437184758224
 Root Mean Squared Error (RMSE) for Open = 18.752863745758134
 Root Mean Squared Error (RMSE) for Close = 21.192556786377768
 Total Root Mean Squared Error (RMSE) 20.009927058972703
+
 ## 9.5 AMZN t-1
 
 ```python
 tweet_stock_pipline(df_for_training, 'AMZN')
 ```
+
 TrainX shape = (1250, 7, 14).
 TrainY shape = (1250, 1, 2).
 Model: "sequential_96"
-_________________________________________________________________
- Layer (type)                Output Shape              Param #   
-=================================================================
- conv1d_186 (Conv1D)         (None, 6, 128)            2944    
-                                                               
- max_pooling1d_186 (MaxPool  (None, 3, 128)            0       
- ing1D)                                                        
-                                                               
- conv1d_187 (Conv1D)         (None, 2, 64)             16448   
-                                                               
- max_pooling1d_187 (MaxPool  (None, 1, 64)             0       
- ing1D)                                                        
-                                                               
- bidirectional_480 (Bidirec  (None, 1, 2048)           8921088   
- tional)                                                       
-                                                               
- dropout_480 (Dropout)       (None, 1, 2048)           0       
-                                                               
- bidirectional_481 (Bidirec  (None, 1, 1024)           10489856  
- tional)                                                       
-                                                               
- dropout_481 (Dropout)       (None, 1, 1024)           0       
-                                                               
- bidirectional_482 (Bidirec  (None, 1, 512)            2623488   
- tional)                                                       
-                                                               
- dropout_482 (Dropout)       (None, 1, 512)            0       
-                                                               
- bidirectional_483 (Bidirec  (None, 1, 256)            656384  
- tional)                                                       
-                                                               
- dropout_483 (Dropout)       (None, 1, 256)            0       
-                                                               
- bidirectional_484 (Bidirec  (None, 1, 128)            164352  
- tional)                                                       
-                                                               
- dropout_484 (Dropout)       (None, 1, 128)            0       
-                                                               
- dense_192 (Dense)           (None, 1, 32)             4128    
-                                                               
- dense_193 (Dense)           (None, 1, 2)              66      
-                                                               
+
+---
+
+Layer (type)                Output Shape              Param #
+=============================================================
+
+conv1d_186 (Conv1D)         (None, 6, 128)            2944
+
+max_pooling1d_186 (MaxPool  (None, 3, 128)            0
+ing1D)
+
+conv1d_187 (Conv1D)         (None, 2, 64)             16448
+
+max_pooling1d_187 (MaxPool  (None, 1, 64)             0
+ing1D)
+
+bidirectional_480 (Bidirec  (None, 1, 2048)           8921088
+tional)
+
+dropout_480 (Dropout)       (None, 1, 2048)           0
+
+bidirectional_481 (Bidirec  (None, 1, 1024)           10489856
+tional)
+
+dropout_481 (Dropout)       (None, 1, 1024)           0
+
+bidirectional_482 (Bidirec  (None, 1, 512)            2623488
+tional)
+
+dropout_482 (Dropout)       (None, 1, 512)            0
+
+bidirectional_483 (Bidirec  (None, 1, 256)            656384
+tional)
+
+dropout_483 (Dropout)       (None, 1, 256)            0
+
+bidirectional_484 (Bidirec  (None, 1, 128)            164352
+tional)
+
+dropout_484 (Dropout)       (None, 1, 128)            0
+
+dense_192 (Dense)           (None, 1, 32)             4128
+
+dense_193 (Dense)           (None, 1, 2)              66
+
 =================================================================
 Total params: 22878754 (87.28 MB)
 Trainable params: 22878754 (87.28 MB)
 Non-trainable params: 0 (0.00 Byte)
-_________________________________________________________________
+
+---
+
 Model: "sequential_97"
-_________________________________________________________________
- Layer (type)                Output Shape              Param #   
-=================================================================
- conv1d_188 (Conv1D)         (None, 6, 128)            3712    
-                                                               
- max_pooling1d_188 (MaxPool  (None, 3, 128)            0       
- ing1D)                                                        
-                                                               
- conv1d_189 (Conv1D)         (None, 2, 64)             16448   
-                                                               
- max_pooling1d_189 (MaxPool  (None, 1, 64)             0       
- ing1D)                                                        
-                                                               
- bidirectional_485 (Bidirec  (None, 1, 2048)           8921088   
- tional)                                                       
-                                                               
- dropout_485 (Dropout)       (None, 1, 2048)           0       
-                                                               
- bidirectional_486 (Bidirec  (None, 1, 1024)           10489856  
- tional)                                                       
-                                                               
- dropout_486 (Dropout)       (None, 1, 1024)           0       
-                                                               
- bidirectional_487 (Bidirec  (None, 1, 512)            2623488   
- tional)                                                       
-                                                               
- dropout_487 (Dropout)       (None, 1, 512)            0       
-                                                               
- bidirectional_488 (Bidirec  (None, 1, 256)            656384  
- tional)                                                       
-                                                               
- dropout_488 (Dropout)       (None, 1, 256)            0       
-                                                               
- bidirectional_489 (Bidirec  (None, 1, 128)            164352  
- tional)                                                       
-                                                               
- dropout_489 (Dropout)       (None, 1, 128)            0       
-                                                               
- dense_194 (Dense)           (None, 1, 32)             4128    
-                                                               
- dense_195 (Dense)           (None, 1, 2)              66      
-                                                               
+
+---
+
+Layer (type)                Output Shape              Param #
+=============================================================
+
+conv1d_188 (Conv1D)         (None, 6, 128)            3712
+
+max_pooling1d_188 (MaxPool  (None, 3, 128)            0
+ing1D)
+
+conv1d_189 (Conv1D)         (None, 2, 64)             16448
+
+max_pooling1d_189 (MaxPool  (None, 1, 64)             0
+ing1D)
+
+bidirectional_485 (Bidirec  (None, 1, 2048)           8921088
+tional)
+
+dropout_485 (Dropout)       (None, 1, 2048)           0
+
+bidirectional_486 (Bidirec  (None, 1, 1024)           10489856
+tional)
+
+dropout_486 (Dropout)       (None, 1, 1024)           0
+
+bidirectional_487 (Bidirec  (None, 1, 512)            2623488
+tional)
+
+dropout_487 (Dropout)       (None, 1, 512)            0
+
+bidirectional_488 (Bidirec  (None, 1, 256)            656384
+tional)
+
+dropout_488 (Dropout)       (None, 1, 256)            0
+
+bidirectional_489 (Bidirec  (None, 1, 128)            164352
+tional)
+
+dropout_489 (Dropout)       (None, 1, 128)            0
+
+dense_194 (Dense)           (None, 1, 32)             4128
+
+dense_195 (Dense)           (None, 1, 2)              66
+
 =================================================================
 Total params: 22879522 (87.28 MB)
 Trainable params: 22879522 (87.28 MB)
 Non-trainable params: 0 (0.00 Byte)
-_________________________________________________________________
+
+---
+
 Epoch 1/100
 15/15 [==============================] - 10s 215ms/step - loss: 0.0937 - val_loss: 0.1977
 Epoch 2/100
@@ -8460,109 +8166,121 @@ Total Root Mean Squared Error (RMSE) 32.49113399669658
 Root Mean Squared Error (RMSE) for Open = 20.616232027318386
 Root Mean Squared Error (RMSE) for Close = 22.764266198015243
 Total Root Mean Squared Error (RMSE) 21.71682341571078
+
 ## 9.6 TSLA t-1
 
 ```python
 tweet_stock_pipline(df_for_training, 'TSLA')
 ```
+
 TrainX shape = (1250, 7, 14).
 TrainY shape = (1250, 1, 2).
 Model: "sequential_98"
-_________________________________________________________________
- Layer (type)                Output Shape              Param #   
-=================================================================
- conv1d_190 (Conv1D)         (None, 6, 128)            2944    
-                                                               
- max_pooling1d_190 (MaxPool  (None, 3, 128)            0       
- ing1D)                                                        
-                                                               
- conv1d_191 (Conv1D)         (None, 2, 64)             16448   
-                                                               
- max_pooling1d_191 (MaxPool  (None, 1, 64)             0       
- ing1D)                                                        
-                                                               
- bidirectional_490 (Bidirec  (None, 1, 2048)           8921088   
- tional)                                                       
-                                                               
- dropout_490 (Dropout)       (None, 1, 2048)           0       
-                                                               
- bidirectional_491 (Bidirec  (None, 1, 1024)           10489856  
- tional)                                                       
-                                                               
- dropout_491 (Dropout)       (None, 1, 1024)           0       
-                                                               
- bidirectional_492 (Bidirec  (None, 1, 512)            2623488   
- tional)                                                       
-                                                               
- dropout_492 (Dropout)       (None, 1, 512)            0       
-                                                               
- bidirectional_493 (Bidirec  (None, 1, 256)            656384  
- tional)                                                       
-                                                               
- dropout_493 (Dropout)       (None, 1, 256)            0       
-                                                               
- bidirectional_494 (Bidirec  (None, 1, 128)            164352  
- tional)                                                       
-                                                               
- dropout_494 (Dropout)       (None, 1, 128)            0       
-                                                               
- dense_196 (Dense)           (None, 1, 32)             4128    
-                                                               
- dense_197 (Dense)           (None, 1, 2)              66      
-                                                               
+
+---
+
+Layer (type)                Output Shape              Param #
+=============================================================
+
+conv1d_190 (Conv1D)         (None, 6, 128)            2944
+
+max_pooling1d_190 (MaxPool  (None, 3, 128)            0
+ing1D)
+
+conv1d_191 (Conv1D)         (None, 2, 64)             16448
+
+max_pooling1d_191 (MaxPool  (None, 1, 64)             0
+ing1D)
+
+bidirectional_490 (Bidirec  (None, 1, 2048)           8921088
+tional)
+
+dropout_490 (Dropout)       (None, 1, 2048)           0
+
+bidirectional_491 (Bidirec  (None, 1, 1024)           10489856
+tional)
+
+dropout_491 (Dropout)       (None, 1, 1024)           0
+
+bidirectional_492 (Bidirec  (None, 1, 512)            2623488
+tional)
+
+dropout_492 (Dropout)       (None, 1, 512)            0
+
+bidirectional_493 (Bidirec  (None, 1, 256)            656384
+tional)
+
+dropout_493 (Dropout)       (None, 1, 256)            0
+
+bidirectional_494 (Bidirec  (None, 1, 128)            164352
+tional)
+
+dropout_494 (Dropout)       (None, 1, 128)            0
+
+dense_196 (Dense)           (None, 1, 32)             4128
+
+dense_197 (Dense)           (None, 1, 2)              66
+
 =================================================================
 Total params: 22878754 (87.28 MB)
 Trainable params: 22878754 (87.28 MB)
 Non-trainable params: 0 (0.00 Byte)
-_________________________________________________________________
+
+---
+
 Model: "sequential_99"
-_________________________________________________________________
- Layer (type)                Output Shape              Param #   
-=================================================================
- conv1d_192 (Conv1D)         (None, 6, 128)            3712    
-                                                               
- max_pooling1d_192 (MaxPool  (None, 3, 128)            0       
- ing1D)                                                        
-                                                               
- conv1d_193 (Conv1D)         (None, 2, 64)             16448   
-                                                               
- max_pooling1d_193 (MaxPool  (None, 1, 64)             0       
- ing1D)                                                        
-                                                               
- bidirectional_495 (Bidirec  (None, 1, 2048)           8921088   
- tional)                                                       
-                                                               
- dropout_495 (Dropout)       (None, 1, 2048)           0       
-                                                               
- bidirectional_496 (Bidirec  (None, 1, 1024)           10489856  
- tional)                                                       
-                                                               
- dropout_496 (Dropout)       (None, 1, 1024)           0       
-                                                               
- bidirectional_497 (Bidirec  (None, 1, 512)            2623488   
- tional)                                                       
-                                                               
- dropout_497 (Dropout)       (None, 1, 512)            0       
-                                                               
- bidirectional_498 (Bidirec  (None, 1, 256)            656384  
- tional)                                                       
-                                                               
- dropout_498 (Dropout)       (None, 1, 256)            0       
-                                                               
- bidirectional_499 (Bidirec  (None, 1, 128)            164352  
- tional)                                                       
-                                                               
- dropout_499 (Dropout)       (None, 1, 128)            0       
-                                                               
- dense_198 (Dense)           (None, 1, 32)             4128    
-                                                               
- dense_199 (Dense)           (None, 1, 2)              66      
-                                                               
+
+---
+
+Layer (type)                Output Shape              Param #
+=============================================================
+
+conv1d_192 (Conv1D)         (None, 6, 128)            3712
+
+max_pooling1d_192 (MaxPool  (None, 3, 128)            0
+ing1D)
+
+conv1d_193 (Conv1D)         (None, 2, 64)             16448
+
+max_pooling1d_193 (MaxPool  (None, 1, 64)             0
+ing1D)
+
+bidirectional_495 (Bidirec  (None, 1, 2048)           8921088
+tional)
+
+dropout_495 (Dropout)       (None, 1, 2048)           0
+
+bidirectional_496 (Bidirec  (None, 1, 1024)           10489856
+tional)
+
+dropout_496 (Dropout)       (None, 1, 1024)           0
+
+bidirectional_497 (Bidirec  (None, 1, 512)            2623488
+tional)
+
+dropout_497 (Dropout)       (None, 1, 512)            0
+
+bidirectional_498 (Bidirec  (None, 1, 256)            656384
+tional)
+
+dropout_498 (Dropout)       (None, 1, 256)            0
+
+bidirectional_499 (Bidirec  (None, 1, 128)            164352
+tional)
+
+dropout_499 (Dropout)       (None, 1, 128)            0
+
+dense_198 (Dense)           (None, 1, 32)             4128
+
+dense_199 (Dense)           (None, 1, 2)              66
+
 =================================================================
 Total params: 22879522 (87.28 MB)
 Trainable params: 22879522 (87.28 MB)
 Non-trainable params: 0 (0.00 Byte)
-_________________________________________________________________
+
+---
+
 Epoch 1/100
 15/15 [==============================] - 10s 237ms/step - loss: 0.1077 - val_loss: 0.0727
 Epoch 2/100
@@ -8767,15 +8485,19 @@ Total Root Mean Squared Error (RMSE) 15.041141956211929
 Root Mean Squared Error (RMSE) for Open = 10.691257613780026
 Root Mean Squared Error (RMSE) for Close = 12.613881135527187
 Total Root Mean Squared Error (RMSE) 11.692155204781924
+
 ```python
 
 ```
+
 ```python
 
 ```
+
 ```python
 
 ```
+
 # 10. Binary Classification Task
 
 ## Creating Binary Labels
@@ -8783,6 +8505,7 @@ Total Root Mean Squared Error (RMSE) 11.692155204781924
 ```python
 stock_data_senti.head()
 ```
+
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -8790,13 +8513,14 @@ stock_data_senti.head()
     }
 
 .dataframe tbody tr th {
-    vertical-align: top;
+vertical-align: top;
 }
 
 .dataframe thead th {
-    text-align: right;
+text-align: right;
 }
 </style>
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -8938,6 +8662,7 @@ stock_data_senti.dropna(subset=['label_t1', 'label_t7'], inplace=True)
 # Display the updated stock_data_sentiset with labels
 stock_data_senti[['date', 'close', 'label_t1', 'label_t7']].head()
 ```
+
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -8945,13 +8670,14 @@ stock_data_senti[['date', 'close', 'label_t1', 'label_t7']].head()
     }
 
 .dataframe tbody tr th {
-    vertical-align: top;
+vertical-align: top;
 }
 
 .dataframe thead th {
-    text-align: right;
+text-align: right;
 }
 </style>
+
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -9016,6 +8742,7 @@ X = stock_data_senti[features]
 y_t1 = stock_data_senti['label_t1']
 y_t7 = stock_data_senti['label_t7']
 ```
+
 ## 2. Split Data
 
 ```python
@@ -9025,6 +8752,7 @@ from sklearn.model_selection import train_test_split
 X_train_t1, X_test_t1, y_train_t1, y_test_t1 = train_test_split(X, y_t1, test_size=0.2, random_state=42)
 X_train_t7, X_test_t7, y_train_t7, y_test_t7 = train_test_split(X, y_t7, test_size=0.2, random_state=42)
 ```
+
 ## 3. Normalize Features
 
 ```python
@@ -9039,6 +8767,7 @@ X_test_t1_scaled = scaler.transform(X_test_t1)
 X_train_t7_scaled = scaler.fit_transform(X_train_t7)
 X_test_t7_scaled = scaler.transform(X_test_t7)
 ```
+
 ## 4. Train Models
 
 ### Logistic Regression for  t+1
@@ -9064,7 +8793,9 @@ f1_t1 = f1_score(y_test_t1, y_pred_t1)
 # Display the evaluation metrics
 (precision_t1, recall_t1, f1_t1)
 ```
+
 (0.7214137214137214, 0.4894217207334274, 0.5831932773109244)
+
 ### Logistic Regression for  t+7
 
 ```python
@@ -9085,7 +8816,9 @@ f1_t7 = f1_score(y_test_t7, y_pred_t7)
 # Display the evaluation metrics
 (precision_t7, recall_t7, f1_t7)
 ```
+
 (0.6255924170616114, 0.21019108280254778, 0.3146603098927294)
+
 ### Random Forest Classifier for  t+1  and  t+7
 
 ```python
@@ -9121,8 +8854,10 @@ f1_t7_rf = f1_score(y_test_t7, y_pred_t7_rf)
 
 (precision_t1_rf, recall_t1_rf, f1_t1_rf), (precision_t7_rf, recall_t7_rf, f1_t7_rf)
 ```
+
 ((0.5789473684210527, 0.49647390691114246, 0.5345482156416097),
- (0.6872427983539094, 0.5318471337579618, 0.599640933572711))
+(0.6872427983539094, 0.5318471337579618, 0.599640933572711))
+
 ## Visualization
 
 ```python
@@ -9184,6 +8919,7 @@ plot_metrics(log_reg_metrics, 'Logistic Regression Performance Metrics')
 # Plot metrics for Random Forest
 plot_metrics(rf_metrics, 'Random Forest Performance Metrics')
 ```
+
 ![png](tweet_stock_files/tweet_stock_165_0.png)
 
 ![png](tweet_stock_files/tweet_stock_165_1.png)
@@ -9215,6 +8951,7 @@ best_model_t1 = grid_search_t1.best_estimator_
 
 best_params_t1
 ```
+
 Fitting 3 folds for each of 216 candidates, totalling 648 fits
 [CV] END bootstrap=True, max_depth=None, min_samples_leaf=1, min_samples_split=2, n_estimators=100; total time=   1.6s
 [CV] END bootstrap=True, max_depth=None, min_samples_leaf=1, min_samples_split=2, n_estimators=100; total time=   1.6s
@@ -9865,15 +9602,12 @@ Fitting 3 folds for each of 216 candidates, totalling 648 fits
 [CV] END bootstrap=False, max_depth=30, min_samples_leaf=4, min_samples_split=10, n_estimators=300; total time=   6.7s
 [CV] END bootstrap=False, max_depth=30, min_samples_leaf=4, min_samples_split=10, n_estimators=300; total time=   6.0s
 
-
-
-
-
 {'bootstrap': True,
- 'max_depth': None,
- 'min_samples_leaf': 1,
- 'min_samples_split': 2,
- 'n_estimators': 300}
+'max_depth': None,
+'min_samples_leaf': 1,
+'min_samples_split': 2,
+'n_estimators': 300}
+
 ```python
 # Initialize the GridSearchCV object for t+7
 grid_search_t7 = GridSearchCV(estimator=RandomForestClassifier(random_state=42), param_grid=param_grid_rf,
@@ -9888,6 +9622,7 @@ best_model_t7 = grid_search_t7.best_estimator_
 
 best_params_t1, best_params_t7
 ```
+
 Fitting 3 folds for each of 216 candidates, totalling 648 fits
 [CV] END bootstrap=True, max_depth=None, min_samples_leaf=1, min_samples_split=2, n_estimators=100; total time=   1.9s
 [CV] END bootstrap=True, max_depth=None, min_samples_leaf=1, min_samples_split=2, n_estimators=100; total time=   2.0s
@@ -10538,20 +10273,17 @@ Fitting 3 folds for each of 216 candidates, totalling 648 fits
 [CV] END bootstrap=False, max_depth=30, min_samples_leaf=4, min_samples_split=10, n_estimators=300; total time=   5.6s
 [CV] END bootstrap=False, max_depth=30, min_samples_leaf=4, min_samples_split=10, n_estimators=300; total time=   5.0s
 
-
-
-
-
 ({'bootstrap': True,
-  'max_depth': None,
-  'min_samples_leaf': 1,
-  'min_samples_split': 2,
-  'n_estimators': 300},
- {'bootstrap': False,
-  'max_depth': None,
-  'min_samples_leaf': 1,
-  'min_samples_split': 5,
-  'n_estimators': 200})
+'max_depth': None,
+'min_samples_leaf': 1,
+'min_samples_split': 2,
+'n_estimators': 300},
+{'bootstrap': False,
+'max_depth': None,
+'min_samples_leaf': 1,
+'min_samples_split': 5,
+'n_estimators': 200})
+
 ## Train and Evaluate Models
 
 ### t+1  Model
@@ -10572,7 +10304,9 @@ f1_t1_best = f1_score(y_test_t1, y_pred_t1_best)
 
 (precision_t1_best, recall_t1_best, f1_t1_best)
 ```
+
 (0.584518167456556, 0.5218617771509168, 0.5514157973174366)
+
 ### t+7  Model
 
 ```python
@@ -10590,7 +10324,9 @@ f1_t7_best = f1_score(y_test_t7, y_pred_t7_best)
 
 (precision_t7_best, recall_t7_best, f1_t7_best)
 ```
+
 (0.67578125, 0.5509554140127388, 0.6070175438596491)
+
 ## Tuning Result Visualization
 
 ```python
@@ -10636,6 +10372,7 @@ ax[1].legend()
 fig.tight_layout()
 plt.show()
 ```
+
 ![png](tweet_stock_files/tweet_stock_175_0.png)
 
 ## Market simulation
@@ -10674,7 +10411,9 @@ for i in range(len(X_test_t1) - 1):  # t+1, so we use data up to the second to l
 average_profit_t1 = sum(profits_t1) / len(profits_t1)
 average_profit_t1
 ```
+
 -25.751654738086735
+
 ```python
 # Initialize lists to store profits
 profits_t7 = []
@@ -10696,7 +10435,9 @@ average_profit_t7 = sum(profits_t7) / len(profits_t7)
 average_profit_t7
 
 ```
+
 6230.212552126924
+
 ## Market Simulation Visualization
 
 ```python
@@ -10721,12 +10462,15 @@ plt.ylabel('Frequency')
 plt.tight_layout()
 plt.show()
 ```
+
 ![png](tweet_stock_files/tweet_stock_181_0.png)
 
 ```python
 y_pred_t1_best
 ```
+
 array([1, 1, 1, ..., 1, 1, 0])
+
 ```python
 # Get the actual and predicted closing prices for t+7
 actual_prices_t7 = y_.iloc[len(X_train_t7_scaled):]['close'].values[:-7]  # Actual closing prices
@@ -10742,15 +10486,15 @@ plt.ylabel('Closing Price ($)')
 plt.legend()
 plt.show()
 ```
----------------------------------------------------------------------------
+
+---
 
 NameError                                 Traceback (most recent call last)
 
 Cell In[407], line 2
-      1 # Get the actual and predicted closing prices for t+7
+1 # Get the actual and predicted closing prices for t+7
 ----> 2 actual_prices_t7 = y_.iloc[len(X_train_t7_scaled):]['close'].values[:-7]  # Actual closing prices
-      3 predicted_prices_t7 = data.iloc[len(X_train_t7_scaled):]['open'].values[:-7] * (1 + y_pred_t7_best)  # Predicted closing prices based on predictions
-      5 # Plot actual vs. predicted closing prices for t+7
-
+3 predicted_prices_t7 = data.iloc[len(X_train_t7_scaled):]['open'].values[:-7] * (1 + y_pred_t7_best)  # Predicted closing prices based on predictions
+5 # Plot actual vs. predicted closing prices for t+7
 
 NameError: name 'y_' is not defined
