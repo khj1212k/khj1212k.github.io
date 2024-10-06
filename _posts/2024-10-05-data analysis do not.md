@@ -4,12 +4,11 @@ title: "문과생이 AI개발자 되는법 - 메타코드 강연 정리"
 categories: Job
 tag: Job
 toc: ture
+author_profile: false
+sidebar:
+  nav: "docs"
 ---
----
-
-강연자 : 6년차 AI 개발자
-
-유튜브 출처 : [https://www.youtube.com/watch?v=_P_fizd9P-A](https://www.youtube.com/watch?v=_P_fizd9P-A)
+강연자 : 6년차 AI 개발자유튜브 출처 : [https://www.youtube.com/watch?v=_P_fizd9P-A](https://www.youtube.com/watch?v=_P_fizd9P-A)
 
 ### 강의목표
 
