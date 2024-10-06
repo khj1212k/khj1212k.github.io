@@ -21,7 +21,7 @@ title                    : "Browwnnee"
 title_separator          : "|"
 subtitle                 : "Studying AI & Data"
 name                     : "Browwnnee"
-description              : "AI 개발자가 되기 위한 공부 기록 블로그/n Studying AI & Data"
+description              : "AI 개발자가 되기 위한 공부 기록 블로그 Studying AI & Data"
 url                      : "https://khj1212k.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
@@ -34,9 +34,9 @@ enable_copy_code_button  : # true, false (default)
 copyright                : # "copyright" name, defaults to site.title
 copyright_url            : # "copyright" URL, defaults to site.url
 comments:
-  provider               :  "disqus" # false (default), "disqus", "discourse", "facebook", "staticman", "staticman_v2", "utterances", "giscus", "custom"
+  provider               : # false (default), "disqus", "discourse", "facebook", "staticman", "staticman_v2", "utterances", "giscus", "custom"
   disqus:
-    shortname            : "Browwnnee"
+    shortname            :
   discourse:
     server               : # https://meta.discourse.org/t/embedding-discourse-comments-via-javascript/31963 , e.g.: meta.discourse.org
   facebook:
