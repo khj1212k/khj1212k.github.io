@@ -3,6 +3,7 @@ layout: single
 title: "Stock Price Prediction with Tweet Data Project"
 categories: Project
 tag: [python, data, ML, DL]
+toc: ture
 ---
 # 0. import
 
