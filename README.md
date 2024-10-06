@@ -1,3 +1,3 @@
-#[Browwnnee's blog]
+#Browwnnee's blog
 
 Studying AI & Data
